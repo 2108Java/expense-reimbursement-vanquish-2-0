@@ -6,9 +6,9 @@ create table users(
     is_manager boolean not null
 );
 
-
-CREATE TYPE reimbursment_type AS ENUM ('food', 'logding', 'travel', 'other');
-CREATE TYPE status AS ENUM ('approved', 'pending', 'denied');
+-- I've updated this one
+CREATE TYPE reimbursment_type AS ENUM ('Food', 'Lodging', 'Travel', 'Other'); 
+CREATE TYPE status AS ENUM ('Approved', 'Pending', 'Denied');
 
 
 create table reimbursment_request(
@@ -23,12 +23,18 @@ create table reimbursment_request(
   
 );
 
-
 drop table users;
 drop table reimbursment_request;
-drop reimbursment_type;
-drop status;
+
+--SQL Staement for deleting an ENUM (DROP TYPE <enum_name>)
+drop type reimbursment_type; -- Deletes the ENUM
+drop type status; -- Deletes the ENUM
+
 
 select * from users;
 select * from reimbursment_request;
-select * from users;
+--SQL statement that shows all the value in a ENUM
+SELECT unnest(enum_range(NULL::reimbursment_type));
+
+-- This SQL code cleans out the data records in the table and restarts the column with serial to 0
+truncate table reimbursment_request restart identity;
