@@ -1,0 +1,15 @@
+--Main insert SQL to put in the information to database for employee requesting a reimbursment request
+/*
+ * INSERT INTO reimbursment_request (reimbursment, amount, description, status_of_request, time_of_request, fk_username) VALUES 
+	(?,?,?,?,now(),(select username from users where username = ?));
+ * 
+ */
+
+insert into reimbursment_request (reimbursment, amount, description, status_of_request, time_of_request, fk_username) values 
+	('Lodging',100,'testing','Pending',now(),(select username from users where username = 'username'));
+
+--Main insert SQL for creating a Login credentials
+/*
+ * INSERT INTO users (username, password, is_manager) VALUES (?,?,?);
+ */
+insert into users (username, password, is_manager) values ('username','password',false);
