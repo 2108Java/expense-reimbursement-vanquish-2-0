@@ -2,37 +2,26 @@ package com.revature.Models;
 
 public class ReimbursementRequest {
 	
-	private int id;
+	//private int id;
+	private String email;
+	
 	private String reimbursementType;
 	private double amount;
 	private String description;
 	private String status;
 	private String timeOfRequest;
-	private String username;
 	
 	public ReimbursementRequest() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReimbursementRequest(int id, String reimbursementType, double amount, String description, String status,
-			String timeOfRequest, String username) {
-		super();
-		this.id = id;
-		this.reimbursementType = reimbursementType;
-		this.amount = amount;
-		this.description = description;
-		this.status = status;
-		this.timeOfRequest = timeOfRequest;
-		this.username = username;
+	public String getEmail() {
+		return email;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getReimbursementType() {
@@ -75,14 +64,16 @@ public class ReimbursementRequest {
 		this.timeOfRequest = timeOfRequest;
 	}
 
-	public String getUsername() {
-		return username;
+	public ReimbursementRequest(String email, String reimbursementType, double amount, String description,
+			String status, String timeOfRequest) {
+		super();
+		this.email = email;
+		this.reimbursementType = reimbursementType;
+		this.amount = amount;
+		this.description = description;
+		this.status = status;
+		this.timeOfRequest = timeOfRequest;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	
-	
 
 }

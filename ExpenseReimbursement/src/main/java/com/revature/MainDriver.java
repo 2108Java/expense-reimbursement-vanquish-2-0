@@ -1,12 +1,18 @@
 package com.revature;
 
+import com.revature.DAO.SignupDAOImp;
+
 import io.javalin.Javalin;
 
 public class MainDriver {
 
 	public static void main(String[] args) {
 		
-		Javalin app = Javalin.create().start(9000);
+		//Javalin app = Javalin.create().start(9000);
+		SignupDAOImp a= new SignupDAOImp();
+		
+		//a.insert();
+		a.select();
 		
 		
 		//Open postman and copy this! ---> http://localhost:9000/ <----
