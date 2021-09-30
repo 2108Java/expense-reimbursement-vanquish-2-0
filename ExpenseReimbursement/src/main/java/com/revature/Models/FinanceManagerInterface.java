@@ -12,4 +12,6 @@ public interface FinanceManagerInterface {
 	public void viewPendingRequests();
 	
 	public void logout();
+	
+	public void filterRequest();
 }
