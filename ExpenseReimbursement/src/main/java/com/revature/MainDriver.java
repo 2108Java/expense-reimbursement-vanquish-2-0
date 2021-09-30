@@ -1,5 +1,7 @@
 package com.revature;
 
+import com.revature.controllers.RequestHandler;
+
 import io.javalin.Javalin;
 
 public class MainDriver {
@@ -18,10 +20,10 @@ public class MainDriver {
 //									|
 //									|
 //									v		
-//		app.get("/", ctx -> ctx.json("Connecting to Postman!"));
+//		app.get("/", ctx -> ctx.json("I'm in javalin!"));
 		
 		
-		
+		RequestHandler.setUpEndpoints(app);
 		
 	}
 

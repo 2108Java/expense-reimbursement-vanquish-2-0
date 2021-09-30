@@ -1,4 +1,6 @@
-package com.revature.Security;
+package com.revature.security;
+
+import io.javalin.http.Context;
 
 public interface Authenticate {
 	
@@ -11,4 +13,6 @@ public interface Authenticate {
 	 * 
 	 */
 
+	public boolean validate(String username, String password);
 }
+
