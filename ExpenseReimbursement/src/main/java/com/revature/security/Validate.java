@@ -2,8 +2,6 @@ package com.revature.security;
 
 import com.revature.repo.UserDAO;
 
-import io.javalin.http.Context;
-
 public class Validate implements Authenticate {
 	
 	UserDAO database;

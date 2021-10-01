@@ -1,7 +1,5 @@
 package com.revature.security;
 
-import io.javalin.http.Context;
-
 public interface Authenticate {
 	
 	//handles user or login validation

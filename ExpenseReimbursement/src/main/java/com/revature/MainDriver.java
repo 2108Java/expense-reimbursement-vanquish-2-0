@@ -4,12 +4,19 @@ import com.revature.controllers.RequestHandler;
 
 import io.javalin.Javalin;
 
+
 public class MainDriver {
 
 	public static void main(String[] args) {
 		
-		Javalin app = Javalin.create().start(9000);
-		
+		 Javalin app = Javalin.create(config -> config.addStaticFiles (
+				 staticFiles -> 
+				 {
+					 staticFiles.directory = "/public";
+				 }
+				 )).start(9000);
+			  
+
 		
 		//Open postman and copy this! ---> http://localhost:9000/ <----
 		//And paste it in the GET input box in Postman

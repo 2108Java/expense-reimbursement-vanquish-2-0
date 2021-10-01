@@ -9,6 +9,12 @@ import java.sql.SQLException;
 
 public class UserDAOImpl implements UserDAO {
 	
+	/*
+	 * This was discussed, we should create a .properties files to save
+	 * the username, password, and url. Until you're finished in 
+	 * the Controllers, use your local database now
+	 */
+	
 	String server = "localhost";
 	String url = "jdbc:postgresql://" + server + "/Reimbursement";
 	String username = "postgres";
@@ -25,18 +31,18 @@ public class UserDAOImpl implements UserDAO {
 			
 			String query = "SELECT username, password FROM users WHERE username = ? AND password = ?";
 			
-			PreparedStatement PS = connect.prepareStatement(query);
+			PreparedStatement ps = connect.prepareStatement(query);
 			
-			PS.setString(1, user);
-			PS.setString(2, pass);
+			ps.setString(1, user);
+			ps.setString(2, pass);
+
 			
-			ResultSet RS = PS.executeQuery();
+			ResultSet rs = ps.executeQuery();
 			
-			while (RS.next()) {
-				
-				if ((RS.getString("username").equals(user)) 
-						&& (RS.getString("password").equals(pass))) {
-					success = true;
+			while (rs.next()) {
+					if ((rs.getString("username").equals(user)) 
+							&& (rs.getString("password").equals(pass))) {
+								success = true;
 				} else {
 					success = false;
 				}
