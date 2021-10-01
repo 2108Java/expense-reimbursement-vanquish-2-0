@@ -8,10 +8,10 @@ public class MainDriver {
 
 	public static void main(String[] args) {
 		
-		//Javalin app = Javalin.create().start(9000);
+		Javalin app = Javalin.create().start(9000);
 		SignupDAOImp a= new SignupDAOImp();
 		
-		//a.insert();
+		a.insert();
 		a.select();
 		
 		
