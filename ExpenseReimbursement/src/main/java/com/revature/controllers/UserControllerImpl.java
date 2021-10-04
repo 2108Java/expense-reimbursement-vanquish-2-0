@@ -20,14 +20,18 @@ public class UserControllerImpl  implements UserControllerInterface{
 	}
 
 	@Override
-	public boolean authenticate(String username, String password) {
+	public boolean authenticate(Context ctx) {
+		boolean authenticated = false; 
 		//What would I need to authenticate a user?
 		
 //		String username = ctx.queryParam("username");
 //		String password = ctx.queryParam("password");
 		
-		Boolean access = authService.validate(username, password);
-		return false;
+//		Boolean access = authService.validate(username, password);
+		
+		String username = ctx.formParam("username");
+		String password = ctx.formParam("password");
+		return authenticated;
 	}
 
 	@Override
@@ -52,6 +56,12 @@ public class UserControllerImpl  implements UserControllerInterface{
 	public void RequestReinbursment() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean authenticate(String username, String password) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

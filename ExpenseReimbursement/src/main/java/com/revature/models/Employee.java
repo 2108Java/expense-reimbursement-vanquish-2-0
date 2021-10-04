@@ -1,6 +1,6 @@
-package com.revature.Models;
+package com.revature.models;
 
-public class Employee extends Users implements EmployeeInterface{
+public class Employee extends User implements EmployeeInterface{
 	
 	String firstname;
 	String lastname;

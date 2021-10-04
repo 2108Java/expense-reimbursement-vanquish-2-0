@@ -1,5 +1,7 @@
 package com.revature.controllers;
 
+import io.javalin.http.Context;
+
 public interface UserControllerInterface {
 	
 
@@ -9,7 +11,7 @@ public interface UserControllerInterface {
 	//The plan is for the data to be represented to the user by 
 	// my JavaScript, HTML and CSS.
 	
-public boolean authenticate(String username, String password);
+	public boolean authenticate(String username, String password);
 	
 	public void login();
 	
@@ -18,6 +20,8 @@ public boolean authenticate(String username, String password);
 	public void viewPastRequests();
 	
 	public void RequestReinbursment();
+
+	public boolean authenticate(Context ctx);
 
 
 }

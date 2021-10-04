@@ -1,17 +1,17 @@
-package com.revature.Models;
+package com.revature.models;
 
-public class Users {
+public class User {
 	
 	private String username;
 	private String password;
 	private boolean isFinanceManager;
 	
-	public Users() {
+	public User() {
 		super();
 		
 	}
 
-	public Users(String username, String password, boolean isFinanceManager) {
+	public User(String username, String password, boolean isFinanceManager) {
 		super();
 		this.username = username;
 		this.password = password;

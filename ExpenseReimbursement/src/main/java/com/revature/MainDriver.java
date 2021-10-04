@@ -18,8 +18,10 @@ public class MainDriver {
 //									|
 //									|
 //									v		
-		app.get("/", ctx -> ctx.json("Connecting to Postman!"));
+//		app.get("/", ctx -> ctx.json("Connecting to Postman! This is a test"));
 //		app.get(("\\{\"user_id\" : [0-9]*\\}"), ctx->ctx.json("connecting again to postman"));
+		
+		app.get("/", ctx -> ctx.html("<h1>Connecting to Postman! This is a test</h1>"));
 //		
 		
 	}

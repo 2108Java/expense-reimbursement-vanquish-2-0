@@ -1,6 +1,6 @@
-package com.revature.Models;
+package com.revature.models;
 
-public class Manager  extends Users implements FinanceManagerInterface{
+public class Manager  extends User implements FinanceManagerInterface{
 
 	int manager_id;
 
