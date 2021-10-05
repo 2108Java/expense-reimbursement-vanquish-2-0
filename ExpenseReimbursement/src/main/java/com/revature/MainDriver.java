@@ -6,7 +6,7 @@ public class MainDriver {
 
 	public static void main(String[] args) {
 		
-		Javalin app = Javalin.create().start(9000);
+		Javalin app = Javalin.create(config -> config.addStaticFiles("/")).start(9000);
 		
 		
 		//Open postman and copy this! ---> http://localhost:9000/ <----
@@ -21,7 +21,7 @@ public class MainDriver {
 //		app.get("/", ctx -> ctx.json("Connecting to Postman! This is a test"));
 //		app.get(("\\{\"user_id\" : [0-9]*\\}"), ctx->ctx.json("connecting again to postman"));
 		
-		app.get("/", ctx -> ctx.html("<h1>Connecting to Postman! This is a test</h1>"));
+//		app.get("/", ctx -> ctx.html("<h1>Connecting to Postman! This is a test</h1>"));
 //		
 		
 	}

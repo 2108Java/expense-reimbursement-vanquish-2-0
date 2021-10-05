@@ -25,7 +25,7 @@ public class AuthenticateController {
 		this.userService = userService;
 	}
 	
-	public void authenticateUser(Context ctx) throws ServletException, IOException {
+	public String authenticateUser(Context ctx) throws ServletException, IOException {
 		
 		String username = ctx.formParam("username");
 		String password = ctx.formParam("password");
@@ -51,6 +51,7 @@ public class AuthenticateController {
 		}else {
 			ctx.res.setStatus(401);
 		}
+		return password;
 	}
 	
 	
