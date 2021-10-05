@@ -47,7 +47,7 @@ public class SignupDAOImp implements SignupDAO {
 		 System.out.println("Comfirm your pasword:");
 		 s5=  sc.nextLine();
 		 
-		 String sql = "INSERT INTO signup1 VALUES (?,?,?,?,?,?)";
+		 String sql = "INSERT INTO signup2 VALUES (?,?,?,?,?,?)";
 		 
 		 try(Connection connection = DriverManager.getConnection(url,username,password)){
 		
@@ -78,6 +78,8 @@ public class SignupDAOImp implements SignupDAO {
 			//r.setFirstname(ps.getString("firstname"));
 			
 			success = true;
+			 System.out.println("Congratulation");
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -93,7 +95,7 @@ public class SignupDAOImp implements SignupDAO {
 		// TODO Auto-generated method stub
 		try(Connection connection = DriverManager.getConnection(url,username,password)){
 			
-			String sql = "select * from signup1  ";
+			String sql = "select * from signup2  ";
 			PreparedStatement ps = connection.prepareStatement(sql);
 			
 			

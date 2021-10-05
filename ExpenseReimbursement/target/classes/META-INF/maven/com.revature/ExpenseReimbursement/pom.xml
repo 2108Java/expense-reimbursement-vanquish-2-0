@@ -16,7 +16,7 @@
 	<dependency>
 	    <groupId>io.javalin</groupId>
 	    <artifactId>javalin</artifactId>
-	    <version>3.13.11</version>
+	    <version>4.1.0</version>
 	</dependency>
 	
 	<!-- Dependency needed to connect run Javalin as well -->
