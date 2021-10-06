@@ -1,7 +1,7 @@
 package com.revature.Models;
 
 public class ReimbursementRequest {
-	private enum reimbursementType{
+	private enum ReimbursementType{
 		LODGING, TRAVEL, FOOD, OTHER
 		
 	}
@@ -9,7 +9,7 @@ public class ReimbursementRequest {
 		AAPROVED, REJECTED, PENDING
 	}
 	
-	private ReimbursementRequest rtype;
+	private ReimbursementType rtype= ReimbursementType.LODGING;
 	private Status status= Status.PENDING;
 	
 	//private int id;
@@ -22,7 +22,7 @@ public class ReimbursementRequest {
 	public Status getStatus() {
 		return status;
 	}
-	public ReimbursementRequest getReimbursementRequest() {
+	public ReimbursementType getReimbursementType() {
 		return rtype;
 	}
 	public String getEmail() {
@@ -31,7 +31,7 @@ public class ReimbursementRequest {
 	public Status setStatus(Status status) {
 		return this.status=status;
 	}
-	public ReimbursementRequest setReimbursementRequest(ReimbursementRequest rtype) {
+	public ReimbursementType setReimbursementType(ReimbursementType rtype) {
 		return this.rtype=rtype;
 	}
 	
@@ -62,7 +62,7 @@ public class ReimbursementRequest {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ReimbursementRequest(ReimbursementRequest rtype, Status status, String email, String description,
+	public ReimbursementRequest(ReimbursementType rtype, Status status, String email, String description,
 			String timeOfRequest, double amount) {
 		super();
 		this.rtype = rtype;

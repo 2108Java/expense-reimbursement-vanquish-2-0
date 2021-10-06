@@ -5,10 +5,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.net.ssl.SSLEngineResult.Status;
 
+import com.revature.Models.EmployeeRequest;
 import com.revature.Models.ReimbursementRequest;
 
 public class RequestDAOImp implements RequestDAO {
@@ -16,37 +19,32 @@ public class RequestDAOImp implements RequestDAO {
 	String url = "jdbc:postgresql://" + server + "/postgres";
 	String username = "postgres";
 	String password = "1983barada";
-	Scanner sc =new Scanner(System.in);
+	List<EmployeeRequest>   employee = new ArrayList<>();
+	
 
 	
-	 String s;
-	 Double s1;
-	 String s2;
-	 String s3;
-	 String s4;
-	 String s5;
-	 String a;
-	 String b;
+	
 	 boolean success;
-	 ReimbursementRequest r= new ReimbursementRequest();
+	
+	 //ReimbursementRequest r= new ReimbursementRequest();
+	 EmployeeRequest e =new EmployeeRequest();
 	 
 	
 		//System.out.println
 
-	@Override
-	public void insert() {
+	public void insert( EmployeeRequest e) {
 		// TODO Auto-generated method stub
 		
 		
 		
-		System.out.println("Enter your Email: ");
+		/*System.out.println("Enter your Email: ");
 			s=  sc.nextLine();
 			
 
 			
 			 
 		    System.out.println("Enter your reimbursement Type: " );
-			 s2=  sc.nextLine();
+			 //s2=  sc.nextLine();
 			 
 			 System.out.println("Enter you description:");
 			 s3=  sc.nextLine();
@@ -58,7 +56,7 @@ public class RequestDAOImp implements RequestDAO {
 			 s5=  sc.nextLine();
 			 
 			 System.out.println("Enter your amount: " );
-			 s1=  sc.nextDouble();
+			 s1=  sc.nextDouble();*/
 			 
 			 String sql = "INSERT INTO request1 VALUES (?,?,?,?,?,?)";
 			 
@@ -67,13 +65,19 @@ public class RequestDAOImp implements RequestDAO {
 			 
 			 PreparedStatement ps = connection.prepareStatement(sql);
 				//String x=Status.valueOf(r.getStatus());
-				ps.setString(1,s);
+				ps.setString(1,e.getEmail());
+				ps.setString(2,e.getRetype());
 
-				ps.setString(2,s2);
-				ps.setString(3, s3);
-				ps.setString(4,s4);
-				ps.setString(5, s5);
-				ps.setDouble(6, s1);
+				//ps.setReimbursementRequest(2,r.getReimbursementType());
+				ps.setString(3, e.getDescription());
+				ps.setString(4,e.getStatus());
+				ps.setString(5, e.getTimeOfRequest());
+				ps.setDouble(6, e.getAmount());
+			// ps.setString(1, s);
+			 //ps.setString(3, s2);
+			// ps.setString(5, s4);
+			// ps.setString(6, s5);
+			 
 				
 				 System.out.println("Congatulation u complete " );
 				
@@ -93,9 +97,9 @@ public class RequestDAOImp implements RequestDAO {
 				
 				success = true;
 				
-			} catch (SQLException e) {
+			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				e1.printStackTrace();
 			}
 			 //System.out.println("Your request is successfuly submitted: " );
 			 
@@ -103,29 +107,40 @@ public class RequestDAOImp implements RequestDAO {
 	}
 
 	@Override
-	public void select() {
+	public List<EmployeeRequest> select() {
+		
+		
 		// TODO Auto-generated method stub
 		
 try(Connection connection = DriverManager.getConnection(url,username,password)){
 			
-			String sql = "select * from request1 where status=r.getStatus()  ";
+			String sql = "select * from request1  ";
 			PreparedStatement ps = connection.prepareStatement(sql);
 			
 			
 			ResultSet rs = ps.executeQuery();
+			//ReimbursementType re = ReimbursementType.valueOf(rs.getString("reimbursment_type"));
+			//Status status =Status.valueOf(rs.getString("status"));
 			while(rs.next()) {
+				employee.add(
+						new EmployeeRequest(rs.getString("email"),rs.getString("reimbursment_type"),rs.getString("description"),
+								rs.getString("status"), rs.getString("time_of_request"), rs.getDouble("amount")
+								)
+						
+						
+						);
 				
-				String email=rs.getString("email");
+				/*String email=rs.getString("email");
 				
 				Double amount=rs.getDouble("amount");
 				String d=rs.getString("description");
 				 a= rs.getString("status");
 				 b=rs.getString("timeOfRequest");
-				 String r=rs.getString("reimbursementType");
+				 String r=rs.getString("reimbursementType");*/
 				 
 				 
-				 System.out.println("Email is:- " + email + "reimbursement Type is: "  +
-		                    " description is:- " + d +"status is"+ a + "time of request is" + b + r + " amount is:- " +amount);
+				// System.out.println("Email is:- " + email + "reimbursement Type is: "  +
+		                    //" description is:- " + d +"status is"+ a + "time of request is" + b + r + " amount is:- " +amount);
 
 				}
 			
@@ -133,13 +148,14 @@ try(Connection connection = DriverManager.getConnection(url,username,password)){
 			
 			
 			}
-			catch (SQLException e) {
+			catch (SQLException e1) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				e1.printStackTrace();
 			}
+return employee;
 
 	}
-	public void iselect() {
+	/*public void iselect() {
 		try(Connection connection = DriverManager.getConnection(url,username,password)){
 		String sql = "select * from request1 where email=? ";
 		PreparedStatement ps = connection.prepareStatement(sql);
@@ -172,7 +188,7 @@ try(Connection connection = DriverManager.getConnection(url,username,password)){
 			e.printStackTrace();
 		}
 		
-	}
+	}*/
 
 	@Override
 	public void delete() {
@@ -186,4 +202,67 @@ try(Connection connection = DriverManager.getConnection(url,username,password)){
 
 	}
 
-}
+	@Override
+	public EmployeeRequest selectByEmail(String email) {
+		// TODO Auto-generated method stub
+		EmployeeRequest u= null;
+		
+try(Connection connection = DriverManager.getConnection(url,username,password)){
+			
+			String sql = "select * from request1 where email=? ";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1,e.getEmail());
+			
+			
+			ResultSet rs = ps.executeQuery();
+			//ReimbursementType re = ReimbursementType.valueOf(rs.getString("reimbursment_type"));
+			//Status status =Status.valueOf(rs.getString("status"));
+			while(rs.next()) {
+				
+						u=new EmployeeRequest(rs.getString("email"),rs.getString("reimbursment_type"),rs.getString("description"),
+								rs.getString("status"), rs.getString("time_of_request"), rs.getDouble("amount")
+								);
+						
+						
+						
+				
+				/*String email=rs.getString("email");
+				
+				Double amount=rs.getDouble("amount");
+				String d=rs.getString("description");
+				 a= rs.getString("status");
+				 b=rs.getString("timeOfRequest");
+				 String r=rs.getString("reimbursementType");*/
+				 
+				 
+				// System.out.println("Email is:- " + email + "reimbursement Type is: "  +
+		                    //" description is:- " + d +"status is"+ a + "time of request is" + b + r + " amount is:- " +amount);
+
+				}
+			
+			
+			
+			
+			}
+			catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+return u;
+
+
+	}
+
+	@Override
+	public void iselect() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+		
+	}
+
+	
+	
+
+
