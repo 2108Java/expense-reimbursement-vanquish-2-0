@@ -24,13 +24,14 @@ public class EmployeeService {
 		//re.select();
 	}
 
-	public EmployeeRequest getEmployeeByEmail(int position) throws IndexOutOfBoundsException{
+	public EmployeeRequest getEmployeeByEmail(String email) throws IndexOutOfBoundsException{
 		// TODO Auto-generated method stub
 		//e1 =re.select();
-		//EmployeeRequest e=  re.selectByEmail(email);
+		 //employee=  re.selectByEmail();
+		EmployeeRequest e1= re.selectByEmail(email);
 		
 		
-		return employee.get(position);
+		return e1;
 	}
 	public List <EmployeeRequest> seeAll() {
 		List <EmployeeRequest> e1 =  re.select();

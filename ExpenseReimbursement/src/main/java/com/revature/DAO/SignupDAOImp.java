@@ -5,7 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import com.revature.Models.SignUp;
 
 public class SignupDAOImp implements SignupDAO {
 	
@@ -14,6 +18,8 @@ public class SignupDAOImp implements SignupDAO {
 	String username = "postgres";
 	String password = "1983barada";
 	Scanner sc =new Scanner(System.in);
+	SignUp signup = new SignUp ();
+	List<SignUp> signup1= new ArrayList<>();
 
 	
 	 String s;
@@ -28,7 +34,7 @@ public class SignupDAOImp implements SignupDAO {
 	@Override
 	public void insert() {
 		// TODO Auto-generated method stub
-		System.out.println("Enter your First name: ");
+		/*System.out.println("Enter your First name: ");
 		s=  sc.nextLine();
 		
 
@@ -45,7 +51,7 @@ public class SignupDAOImp implements SignupDAO {
 		 s4=  sc.nextLine();
 		 
 		 System.out.println("Comfirm your pasword:");
-		 s5=  sc.nextLine();
+		 s5=  sc.nextLine();*/
 		 
 		 String sql = "INSERT INTO signup2 VALUES (?,?,?,?,?,?)";
 		 
@@ -54,12 +60,12 @@ public class SignupDAOImp implements SignupDAO {
 		 
 		 PreparedStatement ps = connection.prepareStatement(sql);
 			
-			ps.setString(1, s);
-			ps.setString(2, s1);
-			ps.setString(3, s2);
-			ps.setString(4, s3);
-			ps.setString(5, s4);
-			ps.setString(6, s5);
+			ps.setString(1, signup.getFirst_name());
+			ps.setString(2, signup.getLast_name());
+			ps.setString(3, signup.getEmail());
+			ps.setString(4, signup.getContact());
+			ps.setString(5, signup.getPassword());
+			ps.setString(6, signup.getConfirmed_password());
 			
 			
 			
@@ -91,7 +97,7 @@ public class SignupDAOImp implements SignupDAO {
 	}
 	
 	@Override
-	public void select() {
+	public List<SignUp> select() {
 		// TODO Auto-generated method stub
 		try(Connection connection = DriverManager.getConnection(url,username,password)){
 			
@@ -102,7 +108,7 @@ public class SignupDAOImp implements SignupDAO {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				
-				String firstname=rs.getString("first_name");
+				/*String firstname=rs.getString("first_name");
 				String lastname=rs.getString("last_name");
 				String email=rs.getString("email");
 				String c=rs.getString("contact");
@@ -111,7 +117,12 @@ public class SignupDAOImp implements SignupDAO {
 				 
 				 
 				 System.out.println("First name is:- " + firstname + " Last Name is: " + lastname + " Email Address is:- " + email +
-		                    " contact is:- " + c+"password is"+ a + "confirmed password is" + b );
+		                    " contact is:- " + c+"password is"+ a + "confirmed password is" + b );*/
+				signup1.add(
+						new SignUp(rs.getString("first_name"), rs.getString("last_name"), rs.getString("email"),
+								rs.getString("contact"), rs.getString("password"), rs.getString("confirm_password")));
+						
+						
 
 				}
 			
@@ -123,6 +134,7 @@ public class SignupDAOImp implements SignupDAO {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		return signup1;
 		}
 
 	

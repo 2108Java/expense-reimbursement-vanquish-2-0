@@ -4,7 +4,7 @@ public class SignUp {
 	private String first_name;
 	private String last_name;
 	private String email;
-	private double contact;
+	private String contact;
 	private String password;
 	private String confirmed_password;
 	
@@ -45,12 +45,12 @@ public class SignUp {
 	}
 
 
-	public double getContact() {
+	public String getContact() {
 		return contact;
 	}
 
 
-	public void setContact(double contact) {
+	public void setContact(String contact) {
 		this.contact = contact;
 	}
 
@@ -75,7 +75,7 @@ public class SignUp {
 	}
 
 
-	public SignUp(String first_name, String last_name, String email, double contact, String password,
+	public SignUp(String first_name, String last_name, String email, String contact, String password,
 			String confirmed_password) {
 		super();
 		this.first_name = first_name;

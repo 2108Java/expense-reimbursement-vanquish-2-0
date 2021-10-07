@@ -18,6 +18,8 @@ public interface RequestDAO {
 	void iselect();
 	//void insert();
 	void insert(EmployeeRequest e);
+	//EmployeeRequest selectByEmail(String email);
+	//EmployeeRequest selectByEmail();
 	EmployeeRequest selectByEmail(String email);
 	
 
