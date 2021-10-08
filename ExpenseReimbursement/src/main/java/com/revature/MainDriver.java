@@ -11,7 +11,12 @@ public class MainDriver {
 
 	public static void main(String[] args) {
 		
-		Javalin app = Javalin.create().start(9003);
+		 Javalin app = Javalin.create(config -> config.addStaticFiles(
+					staticFiles ->
+					{
+						staticFiles.directory = "/public";
+					}
+					)).start(9007);
 		RequestMapping.settingUpEndpoints(app);
 		//SignupDAOImp a= new SignupDAOImp();
 		

@@ -1,6 +1,8 @@
 package com.revature.Models;
 
-public class EmployeeRequest {
+import java.util.List;
+
+public class EmployeeRequest  {
 	private String email;
 	private String retype;
 	private String description;

@@ -14,24 +14,23 @@ public class EmployeeService {
 	RequestDAOImp re= new RequestDAOImp();
 	EmployeeRequest e1 =new EmployeeRequest();
 	
-	public EmployeeService(RequestDAOImp re) {
+	public EmployeeService() {
 		super();
-		this.re=re;
+		//this.re=re;
+		//initEmployee();
 		
 		//initEmployee();
 	}
-	public void initEmployee() {
+	/*public void initEmployee() {
 		//re.select();
-	}
+		List<EmployeeRequest> employee=re.selectByEmail();
+	}*/
 
-	public EmployeeRequest getEmployeeByEmail(String email) throws IndexOutOfBoundsException{
-		// TODO Auto-generated method stub
-		//e1 =re.select();
-		 //employee=  re.selectByEmail();
-		EmployeeRequest e1= re.selectByEmail(email);
+	public List <EmployeeRequest> getEmployeeByEmail() throws IndexOutOfBoundsException{
 		
+		List <EmployeeRequest>	employee=re.selectByEmail(e1);
 		
-		return e1;
+		return this.employee;
 	}
 	public List <EmployeeRequest> seeAll() {
 		List <EmployeeRequest> e1 =  re.select();

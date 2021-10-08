@@ -20,7 +20,9 @@ public interface RequestDAO {
 	void insert(EmployeeRequest e);
 	//EmployeeRequest selectByEmail(String email);
 	//EmployeeRequest selectByEmail();
-	EmployeeRequest selectByEmail(String email);
+	//EmployeeRequest selectByEmail(String email);
+	//List<EmployeeRequest> selectByEmail();
+	List<EmployeeRequest> selectByEmail(EmployeeRequest eq);
 	
 
 }
