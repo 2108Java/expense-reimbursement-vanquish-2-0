@@ -202,7 +202,7 @@ return employee;
 
 	}
 	@Override
-	public List<EmployeeRequest> selectByEmail( EmployeeRequest eq) {
+	public EmployeeRequest selectByEmail( String email) {
 		// TODO Auto-generated method stub
 		EmployeeRequest u= null;
 		
@@ -218,10 +218,10 @@ try(Connection connection = DriverManager.getConnection(url,username,password)){
 			//Status status =Status.valueOf(rs.getString("status"));
 			while(rs.next()) {
 				
-				employee.add(
-						new EmployeeRequest(rs.getString("email"),rs.getString("reimbursment_type"),rs.getString("description"),
+				
+						e=new EmployeeRequest(e.getEmail(),rs.getString("reimbursment_type"),rs.getString("description"),
 								rs.getString("status"), rs.getString("time_of_request"), rs.getDouble("amount")
-								)
+								
 						
 						
 						);
@@ -250,7 +250,7 @@ try(Connection connection = DriverManager.getConnection(url,username,password)){
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-return employee;
+return e;
 
 
 	}

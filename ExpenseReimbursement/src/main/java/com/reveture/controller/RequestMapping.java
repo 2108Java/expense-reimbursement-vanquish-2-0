@@ -13,6 +13,7 @@ public class RequestMapping {
 		RequestDAOImp re= new RequestDAOImp();
 		EmployeeService es = new EmployeeService();
 		EmployeeController e= new EmployeeController(re,es);
+		Authenticate authenticateController = new Authenticate();
 		re.select();
 		
 		SignupDAOImp sd=new SignupDAOImp();
@@ -29,7 +30,9 @@ public class RequestMapping {
 		app.get("/api/signup", ctx -> ctx.json(sc.seeAll()));
 		//app.post("/insert", ctx -> ctx.request.html());
 		
+		app.get("/login" , ctx -> ctx.redirect(authenticateController.authenticate(ctx)));
 		
+		app.get("/" , ctx -> ctx.redirect("login.html"));
 	}
 
 }

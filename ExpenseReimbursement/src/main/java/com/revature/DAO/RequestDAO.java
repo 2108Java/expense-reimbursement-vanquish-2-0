@@ -22,7 +22,8 @@ public interface RequestDAO {
 	//EmployeeRequest selectByEmail();
 	//EmployeeRequest selectByEmail(String email);
 	//List<EmployeeRequest> selectByEmail();
-	List<EmployeeRequest> selectByEmail(EmployeeRequest eq);
+	//EmployeeRequest selectByEmail(EmployeeRequest eq);
+	EmployeeRequest selectByEmail(String email);
 	
 
 }

@@ -26,11 +26,11 @@ public class EmployeeService {
 		List<EmployeeRequest> employee=re.selectByEmail();
 	}*/
 
-	public List <EmployeeRequest> getEmployeeByEmail() throws IndexOutOfBoundsException{
+	public EmployeeRequest getEmployeeByEmail(String email) throws IndexOutOfBoundsException{
 		
-		List <EmployeeRequest>	employee=re.selectByEmail(e1);
+		e1=re.selectByEmail(email);
 		
-		return this.employee;
+		return this.e1;
 	}
 	public List <EmployeeRequest> seeAll() {
 		List <EmployeeRequest> e1 =  re.select();

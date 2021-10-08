@@ -6,7 +6,7 @@ function getAllEmployee(){
 	
 	let employeeId= document.getElementById("employeeId").value;
 	
-	let fullUrl= "http://localhost:9007/api/employee";
+	let fullUrl= "http://localhost:9008/api/employee";
 	//let fullUrl = basedURL + employeeId;
 	let xhttp = new XMLHttpRequest();
 	
