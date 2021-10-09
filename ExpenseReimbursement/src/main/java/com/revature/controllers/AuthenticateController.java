@@ -46,7 +46,7 @@ public class AuthenticateController {
 				//ask client to send another request
 				//the client will use search bar, which is a GET request by definition
 			
-			ctx.res.sendRedirect("http://localhost:8000/home");
+			ctx.res.sendRedirect("http://localhost:9000/home");
 			
 		}else {
 			ctx.res.setStatus(401);

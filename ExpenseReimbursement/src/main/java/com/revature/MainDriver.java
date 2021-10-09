@@ -16,9 +16,7 @@ public class MainDriver {
 		//Just uncomment this one if you want to try your connection to Postman
 		
 //				Click the line and press Ctrl + Shift + C
-//									|
-//							|
-//			
+		
 		ReimbursementController rc = new ReimbursementController();
 		Javalin app = Javalin.create().start(9000);		
 			

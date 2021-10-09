@@ -10,18 +10,21 @@
 	
 }
 
+//setting communications between html/js and java
 
 let button = document.getElementById("requestSubmit");
 
 button.addEventListener('click', getAllRequests);
 
 
+//implementation of the callback function inside the eventListner triggered by submit with id "submitRequest"
 function getAllRequests(){
-	let ReimbursementUrl = "http://localhost:9000/ReimbursementRequests";
+	
+	let ReimbursementUrl = "http://localhost:9000/ReimbursementRequests/";
 	
 	let xhttp = new XMLHttpRequest();
 	
-	
+
 	xhttp.open("Get", ReimbursementUrl);
 	
 	xhttp.send();
@@ -41,7 +44,9 @@ function getAllRequests(){
 	
 }
 
-function addRow(ReimbursementRequest){
+//ReimbursementRequest request = new ReimbursementRequest();
+
+function addRow(request){
 	
 	//appending onto table:
 	let tableBody = documetn.getElementById("ReimbursementsTableBody");
@@ -64,14 +69,14 @@ function addRow(ReimbursementRequest){
 	//assigning the "text value" to columns:
 	
 	idColumn.innerText = Reimursement.id;
-	requesTypeColumn.innerText = ReimbursementRequest.reimbursementType;
-	amountColumn.innerText = ReimbursementRequest.amount;
+	requesTypeColumn.innerText = Request.reimbursementType;
+	amountColumn.innerText = request.amount;
 	descriptionColumn.innerText = ReimbursementRequest.description;
-	statusColumn.innerText = ReimbursementRequest.status;
-	time_of_request_column.innerText = ReimbursementRequest.timeOfRequest;
-	fk_username_column.innerText = ReimbursementRequest.fk_username;
+	statusColumn.innerText = request.status;
+	time_of_request_column.innerText = request.timeOfRequest;
+	fk_username_column.innerText = request.fk_username;
 	
-	//attach the coluns to the newly created row:
+	//attach the columns to the newly created row:
 	
 	tableRow.appendChild(idColumn);
 	tableRow.appendChild(requestTypeColumn);
@@ -83,7 +88,7 @@ function addRow(ReimbursementRequest){
 	
 	//attach the row to the table:
 	
-	tableBody.appenChild(tableRow);
+	tableBody.appendChild(tableRow);
 		
 	
 }
@@ -93,7 +98,6 @@ function addAllRequests(reimbursementArray){
 		addRow(request);
 	}
 }
-
 
 function addAllRequests(RequestsArray){
 	

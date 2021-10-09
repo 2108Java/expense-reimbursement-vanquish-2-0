@@ -75,7 +75,7 @@ public class ReimbursementController {
 	public ReimbursementRequest getReimbursement(Context ctx) {
 		// TODO Auto-generated method stub
 		System.out.println("this is a test");
-		return this.reimbursementList.get(0);
+		return this.reimbursementList.get(1);
 	}
 
 	public List<ReimbursementRequest> getAllRequests(Context ctx) {
