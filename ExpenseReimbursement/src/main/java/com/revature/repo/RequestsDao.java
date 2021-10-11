@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.revature.models.ReimbursementRequest;
 
-public interface ReimbursementDao {
+public interface RequestsDao {
 	
 	public boolean insertReimbursementRequest(ReimbursementRequest request);
 	

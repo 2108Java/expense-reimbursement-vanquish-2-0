@@ -1,7 +1,7 @@
 package com.revature.service;
 
 import com.revature.models.User;
-import com.revature.repo.ReimbursementDao;
+import com.revature.repo.RequestsDao;
 import com.revature.repo.UserDao;
 
 public class UserServiceImpl implements UserService{
@@ -11,7 +11,7 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		
 		UserDao userDao;
-		ReimbursementDao reimbursementRequestDao;
+		RequestsDao reimbursementRequestDao;
 		
 		
 		return null;

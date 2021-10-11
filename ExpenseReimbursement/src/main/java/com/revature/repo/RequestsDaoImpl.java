@@ -8,7 +8,7 @@ import java.util.List;
 
 import com.revature.models.ReimbursementRequest;
 
-public class ReimbursementDaoImpl implements ReimbursementDao {
+public class RequestsDaoImpl implements RequestsDao {
 
 	@Override
 	public boolean insertReimbursementRequest(ReimbursementRequest request) {
