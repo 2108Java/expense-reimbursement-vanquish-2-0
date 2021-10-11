@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.revature.Models.EmployeeRequest;
 import com.revature.Models.SignUp;
 
 public class SignupDAOImp implements SignupDAO {
@@ -136,6 +137,38 @@ public class SignupDAOImp implements SignupDAO {
 			}
 		return signup1;
 		}
+	public SignUp  selectByEmail( String email) {
+		SignUp su= null;
+	
+		try(Connection connection = DriverManager.getConnection(url,username,password)){
+			
+		
+		String sql = "select * from request1 where email=? ";
+		PreparedStatement ps = connection.prepareStatement(sql);
+		ps.setString(1,email);
+		
+		
+		ResultSet rs = ps.executeQuery();
+		
+		while(rs.next()) {
+			
+			
+			su=new SignUp(rs.getString("first_name"),rs.getString("last_name"),su.getEmail(),
+					rs.getString("contact"), rs.getString("password"), rs.getString("confirm_password")
+					
+			
+			
+			);
+		}}
+		catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		return null;
+		
+	}
 
 	
 

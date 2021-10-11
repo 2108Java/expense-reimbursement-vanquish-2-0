@@ -72,21 +72,27 @@ public class EmployeeController {
 		}*/
 	  
 	  public void insert(Context ctx) {
-		  String email = ctx.pathParam("email");
-		  String retype = ctx.pathParam("reimbursement_type");
-		  String description = ctx.pathParam("description");
-		  String status = ctx.pathParam("status");
-		  String timeOfRequest = ctx.pathParam("time_of_request");
-		  String position = ctx.pathParam("position");
-		  double amount = Integer.parseInt(position);
+		  String email = ctx.formParam("email");
 		  
-		  EmployeeRequest er= new EmployeeRequest(email, retype, description, status, timeOfRequest, amount );
+		  String reimbursment_type = ctx.formParam("reimbursment_type");
+		  
+		  String description = ctx.formParam("description");
+		 
+		  String status = ctx.formParam("status");
+		  String time_of_request = ctx.formParam("time_of_request");
+		 // String position = ctx.formParam("position");
+		  String amount = ctx.formParam("amount");
+		  
+		  EmployeeRequest er= new EmployeeRequest(email, reimbursment_type, description, status, time_of_request, amount );
 		  re.insert(er);
 		  
 		  
 	  }
 		
 		
+	
+
+
 	public List<EmployeeRequest>  seeAll() {
 		
 			

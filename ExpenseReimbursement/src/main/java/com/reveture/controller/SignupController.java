@@ -9,10 +9,10 @@ import com.reveture.service.SignupService;
 
 public class SignupController {
 	SignupDAOImp se= new SignupDAOImp();
-	SignupService ss= new SignupService(se);
+	SignupService ss= new SignupService();
 	
-	public SignupController(SignupDAOImp s,SignupService ss ) {
-		this.se=se;
+	public SignupController(SignupDAOImp s ) {
+		//this.se=se;
 		this.ss=ss;
 	}
 	

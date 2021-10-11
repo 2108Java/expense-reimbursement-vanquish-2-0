@@ -4,22 +4,22 @@ import java.util.List;
 
 public class EmployeeRequest  {
 	private String email;
-	private String retype;
+	private String reimbursment_type;
 	private String description;
 	private String status;
-	private String timeOfRequest;
-	private double amount;
+	private String time_of_request;
+	private String amount;
 	
 	
 
-	public EmployeeRequest(String email, String retype, String description, String status, String timeOfRequest,
-			double amount) {
+	public EmployeeRequest(String email, String reimbursmtimeOfRequestent_type, String description, String status, String time_of_request,
+			String amount) {
 		super();
 		this.email = email;
-		this.retype = retype;
+		this.reimbursment_type = reimbursment_type;
 		this.description = description;
 		this.status = status;
-		this.timeOfRequest = timeOfRequest;
+		this.time_of_request = time_of_request;
 		this.amount = amount;
 	}
 	
@@ -34,11 +34,11 @@ public class EmployeeRequest  {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getRetype() {
-		return retype;
+	public String getReimbursment_type() {
+		return reimbursment_type;
 	}
-	public void setRetype(String retype) {
-		this.retype = retype;
+	public void setReimbursment_type(String reimbursment_type) {
+		this.reimbursment_type = reimbursment_type;
 	}
 	public String getDescription() {
 		return description;
@@ -53,22 +53,22 @@ public class EmployeeRequest  {
 		this.status = status;
 	}
 	public String getTimeOfRequest() {
-		return timeOfRequest;
+		return time_of_request;
 	}
-	public void setTimeOfRequest(String timeOfRequest) {
-		this.timeOfRequest = timeOfRequest;
+	public void setTimeOfRequest(String time_of_request) {
+		this.time_of_request = time_of_request;
 	}
-	public double getAmount() {
+	public String getAmount() {
 		return amount;
 	}
-	public void setAmount(double amount) {
+	public void setAmount(String amount) {
 		this.amount = amount;
 	}
 
 	@Override
 	public String toString() {
-		return "EmployeeRequest [email=" + email + ", retype=" + retype + ", description=" + description + ", status="
-				+ status + ", timeOfRequest=" + timeOfRequest + ", amount=" + amount + "]";
+		return "EmployeeRequest [email=" + email + ", retype=" + reimbursment_type + ", description=" + description + ", status="
+				+ status + ", timeOfRequest=" + time_of_request + ", amount=" + amount + "]";
 	}
 
 	

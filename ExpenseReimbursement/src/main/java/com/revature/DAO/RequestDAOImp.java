@@ -58,7 +58,7 @@ public class RequestDAOImp implements RequestDAO {
 			 System.out.println("Enter your amount: " );
 			 s1=  sc.nextDouble();*/
 			 
-			 String sql = "INSERT INTO request1 VALUES (?,?,?,?,?,?)";
+			 String sql = "INSERT INTO request4 VALUES (?,?,?,?,?,?)";
 			 
 			 try(Connection connection = DriverManager.getConnection(url,username,password)){
 			
@@ -66,13 +66,13 @@ public class RequestDAOImp implements RequestDAO {
 			 PreparedStatement ps = connection.prepareStatement(sql);
 				//String x=Status.valueOf(r.getStatus());
 				ps.setString(1,e.getEmail());
-				ps.setString(2,e.getRetype());
+				ps.setString(2,e.getReimbursment_type());
 
 				//ps.setReimbursementRequest(2,r.getReimbursementType());
 				ps.setString(3, e.getDescription());
 				ps.setString(4,e.getStatus());
 				ps.setString(5, e.getTimeOfRequest());
-				ps.setDouble(6, e.getAmount());
+				ps.setString(6, e.getAmount());
 			// ps.setString(1, s);
 			 //ps.setString(3, s2);
 			// ps.setString(5, s4);
@@ -114,7 +114,7 @@ public class RequestDAOImp implements RequestDAO {
 		
 try(Connection connection = DriverManager.getConnection(url,username,password)){
 			
-			String sql = "select * from request1  ";
+			String sql = "select * from request4  ";
 			PreparedStatement ps = connection.prepareStatement(sql);
 			
 			
@@ -124,7 +124,7 @@ try(Connection connection = DriverManager.getConnection(url,username,password)){
 			while(rs.next()) {
 				employee.add(
 						new EmployeeRequest(rs.getString("email"),rs.getString("reimbursment_type"),rs.getString("description"),
-								rs.getString("status"), rs.getString("time_of_request"), rs.getDouble("amount")
+								rs.getString("status"), rs.getString("time_of_request"), rs.getString("amount")
 								)
 						
 						
@@ -208,7 +208,7 @@ return employee;
 		
 try(Connection connection = DriverManager.getConnection(url,username,password)){
 			
-			String sql = "select * from request1 where email=? ";
+			String sql = "select * from request4 where email=? ";
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1,e.getEmail());
 			
@@ -220,7 +220,7 @@ try(Connection connection = DriverManager.getConnection(url,username,password)){
 				
 				
 						e=new EmployeeRequest(e.getEmail(),rs.getString("reimbursment_type"),rs.getString("description"),
-								rs.getString("status"), rs.getString("time_of_request"), rs.getDouble("amount")
+								rs.getString("status"), rs.getString("time_of_request"), rs.getString("amount")
 								
 						
 						

@@ -1,17 +1,20 @@
 package com.reveture.service;
 
 import com.revature.DAO.RequestDAOImp;
+import com.revature.DAO.SignupDAOImp;
 import com.revature.Models.EmployeeRequest;
+import com.revature.Models.SignUp;
 
 public class AutenticateService {
-	public AutenticateService(RequestDAOImp requestDao) {
-		this.requestDao= requestDao;
+	public AutenticateService(SignupDAOImp sign) {
+		this.sign=  sign;
 	}
 	
-	EmployeeRequest e= new EmployeeRequest();
+	SignUp e= new SignUp();
 	RequestDAOImp requestDao;
+	SignupDAOImp sign;
 	public boolean verify(String email) {
-		EmployeeRequest e= requestDao.selectByEmail(email);
+		SignUp e= sign.selectByEmail(email);
 		boolean employeeExists = false;
 		if(e != null) {
 			employeeExists = true;
@@ -26,7 +29,7 @@ public class AutenticateService {
 		boolean userExists = this.verify(email); //check if the user exists first
 		boolean authenticated = false;
 		if(userExists) {
-			EmployeeRequest e = requestDao.selectByEmail(email);
+			SignUp e = sign.selectByEmail(email);
 			
 			if(e.getEmail().equals(email)) {
 				
