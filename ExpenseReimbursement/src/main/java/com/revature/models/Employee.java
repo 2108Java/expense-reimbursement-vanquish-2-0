@@ -1,6 +1,6 @@
 package com.revature.models;
 
-public class Employee extends User implements EmployeeInterface{
+public class Employee{
 	
 	String firstname;
 	String lastname;
@@ -14,10 +14,7 @@ public class Employee extends User implements EmployeeInterface{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Employee(String username, String password, boolean isFinanceManager) {
-		super(username, password, isFinanceManager);
-		// TODO Auto-generated constructor stub
-	}
+	
 
 	public Employee(String firstname, String lastname, String email, String phone) {
 		super();
@@ -27,19 +24,18 @@ public class Employee extends User implements EmployeeInterface{
 		this.phone = phone;
 	}
 
-	@Override
+	
 	public void submitRequest() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void checkStatus() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public void updateInfo() {
 		// TODO Auto-generated method stub
 		

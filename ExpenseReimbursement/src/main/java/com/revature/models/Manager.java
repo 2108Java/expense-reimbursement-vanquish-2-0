@@ -1,6 +1,6 @@
 package com.revature.models;
 
-public class Manager  extends User implements FinanceManagerInterface{
+public class Manager{
 
 	int manager_id;
 
@@ -12,7 +12,7 @@ public class Manager  extends User implements FinanceManagerInterface{
 	}
 
 	public Manager(String username, String password, boolean isFinanceManager) {
-		super(username, password, isFinanceManager);
+		super();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -21,37 +21,31 @@ public class Manager  extends User implements FinanceManagerInterface{
 		this.manager_id = manager_id;
 	}
 
-	@Override
 	public void login() {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public boolean processRequest() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
 	public void viewAllRequests() {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void viewPendingRequests() {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void logout() {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void filterRequest() {
 		// TODO Auto-generated method stub
 

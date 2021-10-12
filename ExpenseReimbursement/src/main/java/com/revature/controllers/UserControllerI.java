@@ -1,25 +1,24 @@
 package com.revature.controllers;
 
 import com.revature.service.AuthService;
-import com.revature.service.ReimbursmentService;
+import com.revature.service.ReimbursementService;
 import com.revature.service.UserService;
 
 import io.javalin.http.Context;
 
-public class UserControllerImpl  implements UserControllerInterface{
+public class UserControllerI {
 	
 	private UserService userService;
 	private AuthService authService;
-	private ReimbursmentService requestSerive;
+	private ReimbursementService requestSerive;
 		
-	public UserControllerImpl(UserService userService, AuthService authService, ReimbursmentService requestSerive) {
+	public UserControllerI(UserService userService, AuthService authService, ReimbursementService requestSerive) {
 		super();
 		this.userService = userService;
 		this.authService = authService;
 		this.requestSerive = requestSerive;
 	}
 
-	@Override
 	public boolean authenticate(Context ctx) {
 		boolean authenticated = false; 
 		//What would I need to authenticate a user?
@@ -34,31 +33,27 @@ public class UserControllerImpl  implements UserControllerInterface{
 		return authenticated;
 	}
 
-	@Override
 	public void login() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void viewPendingRequest() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+
 	public void viewPastRequests() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void RequestReinbursment() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public boolean authenticate(String username, String password) {
 		// TODO Auto-generated method stub
 		return false;

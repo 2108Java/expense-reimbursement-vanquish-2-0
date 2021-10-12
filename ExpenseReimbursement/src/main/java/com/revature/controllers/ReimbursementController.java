@@ -69,20 +69,38 @@ public class ReimbursementController {
 				
 		);
 		
+		reimbursementList.add(
+				new ReimbursementRequest(
+						4, 
+						"certification",
+						300, 
+						"Cloud services",
+						"10-01-2021",
+						"pending",
+						"username1"
+				)
+				
+		);
 		
 	}
 
-	public ReimbursementRequest getReimbursement(Context ctx) {
-		// TODO Auto-generated method stub
-		System.out.println("this is a test");
-		return this.reimbursementList.get(1);
-	}
+//	public ReimbursementRequest getReimbursement(Context ctx) {
+//		// TODO Auto-generated method stub
+//		System.out.println("this is a test");
+//		return this.reimbursementList.get(1);
+//	}
 
 	public List<ReimbursementRequest> getAllRequests(Context ctx) {
-		
 		
 		ctx.res.setStatus(200);
 		return this.reimbursementList;
 	}
+
+	public ReimbursementRequest getRequest(Context ctx) {
+		
+		ctx.res.setStatus(200);
+		return this.reimbursementList.get(1);
+	}
+	
 
 }
