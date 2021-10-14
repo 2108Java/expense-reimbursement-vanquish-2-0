@@ -8,6 +8,7 @@ public class Request {
 	String description; 
 	String request_status = "pending"; 
 	String request_date;
+	private int reques_id;
 	public Request(int request_id, String request_type, double amount, String description, String request_status,
 			String request_date) {
 		super();
@@ -21,6 +22,10 @@ public class Request {
 	
 	public int getRequest_id() {
 		return request_id;
+	}
+	
+	public void setRequest_id(int request_id) {
+		this.reques_id = request_id;
 	}
 	
 	
