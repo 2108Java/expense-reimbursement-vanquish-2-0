@@ -1,6 +1,5 @@
 package com.revature;
 
-import com.revature.controllers.*;
 import io.javalin.Javalin;
 
 public class MainDriver {
@@ -13,11 +12,12 @@ public class MainDriver {
 		
 		
 		
-		Javalin app = Javalin.create(config -> config.addStaticFiles("/")).start(9000);
+//		Javalin app = Javalin.create(config -> config.addStaticFiles("/")).start(9000);
 		
-//		Javalin app = Javalin.create().start(9000);
+		Javalin app = Javalin.create().start(9000);
+		app.get(("/"), ctx -> ctx.json("Hello there "));
 		
-		RequestHandler.setupEndPoints(app);
+	
 		
 	}
 
