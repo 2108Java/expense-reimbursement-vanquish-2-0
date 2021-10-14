@@ -2,22 +2,20 @@
  * 
  */
 
-function getAllEmployee(){
+function getEmployee(){
 	
 	let employeeId= document.getElementById("employeeId").value;
 	
-	let fullUrl= "http://localhost:9104/api/employee";
-	//let fullUrl = basedURL + employeeId;
+	let basedURL= "http://localhost:9103/api/employee/";
+	let fullUrl = basedURL + employeeId;
 	let xhttp = new XMLHttpRequest();
 	
 	xhttp.onreadystatechange = function(){
 		if(this.status == 200 && this.readyState == 4){
 		console.log(this.responseText);
 		let fullObject = JSON.parse(this.responseText);
-		console.log(fullObject);
-		addAllEmployees(fullObject);
-            //fullObject.id = employeeId;
-             //addRow(fullObject);
+            fullObject.id = employeeId;
+             addRow(fullObject);
 		}
 		else if(this.status == 404 && this.readyState == 4){
 			console.log("The request was not found by the server")
@@ -26,23 +24,15 @@ function getAllEmployee(){
 	xhttp.send();
 	
 }
-//getAllEmployee();
+ 
 
-let button = document.getElementById("employeeSubmit");
-button.addEventListener('click', getAllEmployee);
-
-window.onload = function(){
-	 getAllEmployee();
-	
-}
+let button = document.querySelector("#employeeSubmit");
+button.addEventListener('click',getEmployee);
 
 
-function addRow(employeeRequest){
-	
-	console.log(employeeRequest);
+function addRow(EmployeeRequest){
 	let tableBody = document.getElementById("starTableBody");
 	let tableRow = document.createElement("tr");
-	
 	
 	//let IdColumn = document.createElement("td");
 	let EmailColumn = document.createElement("td");
@@ -52,18 +42,18 @@ function addRow(employeeRequest){
     let TimeofRequestColumn = document.createElement("td");
     let AmountColumn = document.createElement("td");
 
-    //IdColumn.innerText = employeeRequest.request_id;
-    EmailColumn.innerText = employeeRequest.email;
-    Reimbursement_typeColumn.innerText = employeeRequest.reimbursment_type;
-    DescriptionColumn.innerText = employeeRequest.description;
-    StatusColumn.innerText = employeeRequest.status;
-    TimeofRequestColumn.innerText = employeeRequest.timeOfRequest;
-    AmountColumn.innerText = employeeRequest.amount;
+    
+    //IdColumn.innerText = EmployeeRequest.request_id;
+    EmailColum.innerText = EmployeeRequest.email;
+    Reimbursement_typeColumn.innerText = EmployeeRequest.retype;
+    DescriptionColumn.innerText = EmployeeRequest.description;
+    StatusColumn.innerText = EmployeeRequest.status;
+    TimeofRequestColumn.innerText = EmployeeRequest.timeOfRequest;
+    AmountColumn.innerText = EmployeeRequest.amount;
     
     
 
     //attach the columns to our newly created row 
-     
     //tableRow.appendChild(IdColumn);
     tableRow.appendChild(EmailColumn);
     tableRow.appendChild(Reimbursement_typeColumn);
@@ -76,8 +66,3 @@ function addRow(employeeRequest){
     tableBody.appendChild(tableRow);
     
 }
-function addAllEmployees(fullObject){
-	
-	for(let employeeRequest of fullObject){
-		addRow(employeeRequest);
-	}}

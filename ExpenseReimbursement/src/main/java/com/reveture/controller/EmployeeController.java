@@ -72,18 +72,30 @@ public class EmployeeController {
 		}*/
 	  
 	  public void insert(Context ctx) {
-		  String email = ctx.formParam("email");
 		  
-		  String reimbursment_type = ctx.formParam("reimbursment_type");
+		  String id = ctx.formParam("request_id");
+		  int request_id = Integer.parseInt(id);
+		  //System.out.println(email);
+		  
+		  String email = ctx.formParam("email");
+		  System.out.println(email);
+		  
+		  String reimbursment_type= ctx.formParam("reimbursment_type");
+		  System.out.println(reimbursment_type);
 		  
 		  String description = ctx.formParam("description");
+		  System.out.println(description);
 		 
 		  String status = ctx.formParam("status");
+		  System.out.println(status);
+		  
 		  String time_of_request = ctx.formParam("time_of_request");
+		  System.out.println(time_of_request);
 		 // String position = ctx.formParam("position");
 		  String amount = ctx.formParam("amount");
+		  System.out.println(amount);
 		  
-		  EmployeeRequest er= new EmployeeRequest(email, reimbursment_type, description, status, time_of_request, amount );
+		  EmployeeRequest er= new EmployeeRequest(request_id,email,reimbursment_type,description, status, time_of_request, amount);
 		  re.insert(er);
 		  
 		  

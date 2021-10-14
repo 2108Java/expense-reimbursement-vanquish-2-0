@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.revature.DAO.RequestDAOImp;
 import com.revature.DAO.SignupDAOImp;
+import com.revature.DAO.UserDAO;
 import com.revature.Models.SignUp;
 import com.reveture.service.AutenticateService;
 import com.reveture.service.EmployeeService;
@@ -19,10 +20,11 @@ public class RequestMapping {
 		EmployeeService es = new EmployeeService();
 		SignupService ss= new SignupService();
 		SignupDAOImp sd = new SignupDAOImp();
+		UserDAO dao=new UserDAO();
 		EmployeeController e= new EmployeeController(re,es);
-		AutenticateService authService = new AutenticateService(sd);
+		AutenticateService authService = new AutenticateService(dao);
 		
-		Authenticate authenticateController = new Authenticate( authService, ss);
+		Authenticate authenticateController = new Authenticate( authService);
 		re.select();
 		
 		
@@ -39,8 +41,8 @@ public class RequestMapping {
 		app.get("/api/signup", ctx -> ctx.json(sc.seeAll()));
 	//app.post("/insert", ctx -> ctx.request.html());
 		
-		//app.get("/login" , ctx -> ctx.redirect(authenticateController.authenticate(ctx)));
-		app.get("/", ctx -> {
+		//app.post("/login" , ctx -> ctx.redirect(authenticateController.authenticate(ctx)));
+		/*app.get("/", ctx -> {
 			HttpServletRequest request = ctx.req;
 			HttpServletResponse response = ctx.res;
 			
@@ -51,7 +53,7 @@ public class RequestMapping {
 			//Also forward them the resust and response objects!
 			reqDispatcher.forward(request, response);
 		}
-			);
+			);*/
 app.post("/authenticate", ctx -> {
 			
 			authenticateController.authenticate(ctx);

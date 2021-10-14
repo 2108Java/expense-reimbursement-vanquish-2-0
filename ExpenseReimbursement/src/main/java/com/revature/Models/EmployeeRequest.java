@@ -3,6 +3,9 @@ package com.revature.Models;
 import java.util.List;
 
 public class EmployeeRequest  {
+	private int request_id;
+	
+
 	private String email;
 	private String reimbursment_type;
 	private String description;
@@ -12,15 +15,23 @@ public class EmployeeRequest  {
 	
 	
 
-	public EmployeeRequest(String email, String reimbursmtimeOfRequestent_type, String description, String status, String time_of_request,
+	public EmployeeRequest(int request_id,String email, String reimbursment_type, String time_of_request, String description, String status,
 			String amount) {
 		super();
+		this.request_id=request_id;
 		this.email = email;
 		this.reimbursment_type = reimbursment_type;
 		this.description = description;
 		this.status = status;
 		this.time_of_request = time_of_request;
 		this.amount = amount;
+	}
+	public int getRequest_id() {
+		return request_id;
+	}
+
+	public void setRequest_id(int request_id) {
+		this.request_id = request_id;
 	}
 	
 	public EmployeeRequest() {
@@ -64,12 +75,14 @@ public class EmployeeRequest  {
 	public void setAmount(String amount) {
 		this.amount = amount;
 	}
-
 	@Override
 	public String toString() {
-		return "EmployeeRequest [email=" + email + ", retype=" + reimbursment_type + ", description=" + description + ", status="
-				+ status + ", timeOfRequest=" + time_of_request + ", amount=" + amount + "]";
+		return "EmployeeRequest [request_id=" + request_id + ", email=" + email + ", reimbursment_type="
+				+ reimbursment_type + ", description=" + description + ", status=" + status + ", time_of_request="
+				+ time_of_request + ", amount=" + amount + "]";
 	}
+
+	
 
 	
 	

@@ -5,8 +5,7 @@ public class SignUp {
 	private String last_name;
 	private String email;
 	private String contact;
-	private String password;
-	private String confirmed_password;
+	
 	
 	
 	public SignUp() {
@@ -55,35 +54,16 @@ public class SignUp {
 	}
 
 
-	public String getPassword() {
-		return password;
-	}
+	
 
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-
-	public String getConfirmed_password() {
-		return confirmed_password;
-	}
-
-
-	public void setConfirmed_password(String confirmed_password) {
-		this.confirmed_password = confirmed_password;
-	}
-
-
-	public SignUp(String first_name, String last_name, String email, String contact, String password,
-			String confirmed_password) {
+	public SignUp(String first_name, String last_name, String email, String contact) {
 		super();
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.email = email;
 		this.contact = contact;
-		this.password = password;
-		this.confirmed_password = confirmed_password;
+		
 	}
 	
 
