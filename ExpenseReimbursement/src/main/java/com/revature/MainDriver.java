@@ -23,7 +23,7 @@ public class MainDriver {
 		
 		
 		//replaced with a debugged way below
-		Javalin app = Javalin.create(config -> config.addStaticFiles("/")).start(9000);
+//		Javalin app = Javalin.create(config -> config.addStaticFiles("/")).start(9000);
 		
 //		app.get("$\\{name}", ctx -> { // the {} syntax does not allow slashes ('/') as part of the parameter
 //		    ctx.result("Hello: " + ctx.pathParam("name"));
@@ -32,16 +32,16 @@ public class MainDriver {
 //		RequestHandler rq = new RequestHandler();
 		
 		//this resolves the issue of not being able to have "/" in "request/{request_id}"
-//		Javalin app = Javalin.create(config -> config.addStaticFiles(
-//				staticFiles ->
-//				{
-//					staticFiles.directory = "/public";
-//				}
-//				)).start(9000);
+		Javalin app = Javalin.create(config -> config.addStaticFiles(
+				staticFiles ->
+				{
+					staticFiles.directory = "/public";
+				}
+				)).start(9000);
 		
 		RequestHandler.setupEndPoints(app);
 		
-		//use controller to insert a request into databse vis service->dao
+		//use controller to insert a request into database via service->dao
 		RequestController requestController = new RequestController();
 		requestController.create();
 		

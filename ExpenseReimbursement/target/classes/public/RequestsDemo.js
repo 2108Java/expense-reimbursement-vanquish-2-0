@@ -77,30 +77,32 @@ function addRow(request){
     let tableRow = document.createElement("tr");
 
     //Create the columns
-    let request_idColumn = document.createElement("td");
-    let request_typeColumn = document.createElement("td");
+    let requestIdColumn = document.createElement("td");
+    let requestTypeColumn = document.createElement("td");
     let amountColumn = document.createElement("td");
     let descriptionColumn = document.createElement("td");
-    let request_statusColumn = document.createElement("td");
-    let request_dateColumn = document.createElement("td");
-   
+    let requestStatusColumn = document.createElement("td");
+    let requestDateColumn = document.createElement("td");
+    let fkEmployeeIdColumn = document.createElement("td");
 
     //assigning the "text value" to our columns 
 
-    request_idColumn.innerText = request.request_id;
-    request_typeColumn.innerText = request.request_type;
+    requestIdColumn.innerText = request.requestId;
+    requestTypeColumn.innerText = request.requestType;
     amountColumn.innerText = request.amount;
     descriptionColumn.innerText = request.description;
-    request_statusColumn.innerText = request.request_status;
-    request_dateColumn.innerText = request.request_date;
+    requestStatusColumn.innerText = request.requestStatus;
+    requestDateColumn.innerText = request.requestDate;
+    fkEmployeeIdColumn.innerText = request.fkEmployeeId;
 
     //attach the columns to our newly created row 
-    tableRow.appendChild(request_idColumn);
-    tableRow.appendChild(request_typeColumn);
+    tableRow.appendChild(requestIdColumn);
+    tableRow.appendChild(requestTypeColumn);
     tableRow.appendChild(amountColumn);
     tableRow.appendChild(descriptionColumn);
-    tableRow.appendChild(request_statusColumn);
-    tableRow.appendChild(request_dateColumn);
+    tableRow.appendChild(requestStatusColumn);
+    tableRow.appendChild(requestDateColumn);
+    tableRow.appendChild(fkEmployeeIdColumn);
     
 
     //attach the row itself to the table

@@ -11,17 +11,12 @@ public class RequestHandler {
 		RequestController requestController = new RequestController();
 		AuthenticateController authenticateController = new AuthenticateController();
 		
-		requestController.initializeList();
 		
-		app.get("/requests", ctx -> ctx.json(requestController.getAllRequests(ctx)));
-		
-		//the id should match the one in controller!
-//		app.get("/request/{request_id}", ctx -> ctx.json(requestController.getRequest(ctx)));
+		app.get("/requests", ctx -> ctx.json(requestController.getRequestList(ctx)));
+		app.get("/request", ctx -> ctx.json(requestController.getRequestById(ctx)));
 		app.get("/login", ctx -> ctx.redirect(authenticateController.authenticate(ctx)));
 		
-		//as soon as a users type the url, they get redirected to our the login page which we named LoginPage.html:
-		
-		app.get("/", ctx -> ctx.redirect("/LoginPage.html"));
+		//as soon as a user types the url, 
 	}
 
 }

@@ -1,6 +1,5 @@
 package com.revature.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.models.Request;
@@ -16,7 +15,7 @@ public class RequestController {
 	
 	RequestService requestService = new RequestService();
 
-//	List<Request> rquestList = new ArrayList<>();
+//	List<Request> requestList = new ArrayList<>();
 //	public List<Request> initializeList() {
 //		
 //		requestList.add(new Request(1, "Certification", 200, "Java certification", "pending", "10/14/2021", 1));
@@ -29,7 +28,7 @@ public class RequestController {
 //		return requestList;
 //				
 //	}
-//	
+	
 	
 	public Request getRequestById(Context ctx) {
 		
@@ -54,7 +53,7 @@ public class RequestController {
 	
 	public void create() {
 		
-		Request request = new Request(7, "Lodging", 100, "lodging expense", "pending", "10/12/2021", 7);
+		Request request = new Request("Lodging", 100, "lodging expense", "pending", "10/12/2021");
 		requestService.createRequest(request);
 		
 	}

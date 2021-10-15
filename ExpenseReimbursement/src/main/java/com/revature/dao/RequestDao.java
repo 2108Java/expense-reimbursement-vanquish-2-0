@@ -30,7 +30,6 @@ public class RequestDao {
 
 			ResultSet rs = ps.executeQuery();
 
-			int i = 0;
 			
 			while(rs.next()) {
 				requestList.add(new Request(
@@ -42,8 +41,6 @@ public class RequestDao {
 						rs.getString("request_date"),
 						rs.getInt("employee_id")
 						));
-				
-			
 				
 			}
 		}catch(SQLException e) {
@@ -57,13 +54,13 @@ public class RequestDao {
 	public boolean insertRequest(Request request) {
 		
 		boolean success = false;
-		//2. Write a SQL statement String
-		String sql = "INSERT INTO requests VALUES (?,?,?,?,?,?)";
+	
 		//1. Connect to database!
 		
 		try(Connection connection = DriverManager.getConnection(url,username,password)){
 
-
+			//2. Write a SQL statement String
+			String sql = "INSERT INTO requests VALUES (?,?,?,?,?,?, ?)";
 
 			PreparedStatement ps = connection.prepareStatement(sql);
 
@@ -90,12 +87,41 @@ public class RequestDao {
 
 
 	public Request selectRequestById(int requestId) {
-		// TODO Auto-generated method stub
-		return null;
+		Request request = null;	
+		try{
+			Connection connection = DriverManager.getConnection(url, username, password);
+			
+			String sql = "SELECT * FROM requests WHERE request_id = ?";
+
+			PreparedStatement ps = connection.prepareStatement(sql);
+			
+			ps.setInt(1,  requestId);
+
+			ResultSet rs = ps.executeQuery();
+
+
+			while(rs.next()) {
+				request = (new Request(
+						rs.getInt("request_id"),
+						rs.getString("request_type"),
+						rs.getDouble("amount"),
+						rs.getString("description"),
+						rs.getString("request_status"),
+						rs.getString("request_date"),
+						rs.getInt("employee_id")
+						));
+
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+
+		return request;
+
 	}
 	
 	
-	public boolean updateRequest(int id) {
+	public boolean updateRequest(int requestId, String requestStatus) {
 		
 		boolean success = false;
 		
@@ -107,15 +133,15 @@ public class RequestDao {
 
 			PreparedStatement ps = connection.prepareStatement(sql);
 			
-			ps.setString(1, "approved");
-			ps.setInt(2, id);
+			ps.setString(1, requestStatus);
+			ps.setInt(2, requestId);
 
 			ps.execute();
 
 			success = true;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 

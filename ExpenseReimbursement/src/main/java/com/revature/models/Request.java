@@ -1,6 +1,10 @@
 package com.revature.models;
 
+import com.revature.service.EmployeeService;
+
 public class Request {
+	//a request cannot exist on its own, therefore, employee info should be present at the time of request creation. 
+	EmployeeService employeeService = new EmployeeService();
     
     int requestId;
     String requestType; 
@@ -9,6 +13,7 @@ public class Request {
     String requestStatus = "pending"; 
     String requestDate;
     int employeeId;
+    
     
     public Request(int requestId, String requestType, double amount, String description, String requestStatus,
             String requestDate, int employeeId) {
@@ -19,10 +24,19 @@ public class Request {
         this.description = description;
         this.requestStatus = requestStatus;
         this.requestDate = requestDate;
-        this.employeeId = employeeId;
+        this.employeeId =  employeeId;  // must match the employee id in the database
     }
     
-    public int getEmployeeId() {
+    public Request(String requestType, double amount, String description, String requestStatus, String requestDate) {
+    	
+    	this.requestType = requestType;
+        this.amount = amount;
+        this.description = description;
+        this.requestStatus = requestStatus;
+        this.requestDate = requestDate;
+	}
+
+	public int getEmployeeId() {
     	return employeeId;
     }
     
