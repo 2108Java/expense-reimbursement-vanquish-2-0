@@ -24,6 +24,11 @@ public class AuthenticateController {
 		
 		String page = "";
 		
+		if(ctx.queryParam("username").equals("username1")&& ctx.queryParam("password").equals("password")) {
+			page = "RequestsLandingPage.html";
+		}else {
+			page = "FailedLoginPage.html";
+		}
 		
 		return page;
 		

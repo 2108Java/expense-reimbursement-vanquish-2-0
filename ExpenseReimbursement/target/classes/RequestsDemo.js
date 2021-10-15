@@ -6,7 +6,7 @@ function getRequest(){ //getting a single request
 
     let requestId = document.getElementById("requestId").value;
     
-    let baseUrl = "http://localhost:8000/request/";
+    let baseUrl = "http://localhost:9000/request/";
     
     let fullRequestUrl = baseUrl +requestId;
     
@@ -32,7 +32,7 @@ function getAllRequests(){ //getting all the requests
     
     
 
-    let requestsUrl = "http://localhost:8000/requests";
+    let requestsUrl = "http://localhost:9000/requests";
     
     let xhttp = new XMLHttpRequest();
     
@@ -77,21 +77,26 @@ function addRow(request){
     let tableRow = document.createElement("tr");
 
     //Create the columns
-    let idColumn = document.createElement("td");
-    let nameColumn = document.createElement("td");
-    let descColumn = document.createElement("td");
-    let ringsColumn = document.createElement("td");
+    let request_idColumn = document.createElement("td");
+    let request_typeColumn = document.createElement("td");
+    let amountColumn = document.createElement("td");
+    let descriptionColumn = document.createElement("td");
+    let request_statusColumn = document.createElement("td");
+    let request_dateColumn = document.createElement("td");
+   
 
     //assigning the "text value" to our columns 
 
-    idColumn.innerText = request.id;
-    nameColumn.innerText = request.name;
-    descColumn.innerText = request.description;
-    ringsColumn.innerText = request.rings;
+    request_idColumn.innerText = request.request_id;
+    request_typeColumn.innerText = request.request_type;
+    amountColumn.innerText = request.amount;
+    descriptionColumn.innerText = request.description;
+    request_statusColumn.innerText = request.request_status;
+    request_dateColumn.innerText = request.request_date;
 
     //attach the columns to our newly created row 
     tableRow.appendChild(request_idColumn);
-    tableRow.appendChild(request_taypeColumn);
+    tableRow.appendChild(request_typeColumn);
     tableRow.appendChild(amountColumn);
     tableRow.appendChild(descriptionColumn);
     tableRow.appendChild(request_statusColumn);

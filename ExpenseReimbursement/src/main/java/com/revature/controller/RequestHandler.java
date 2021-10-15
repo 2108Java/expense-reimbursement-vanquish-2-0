@@ -16,6 +16,10 @@ public class RequestHandler {
 		app.get("/requests", ctx -> ctx.json(requestController.getAllRequests(ctx)));
 		app.get("/request", ctx -> ctx.json(requestController.getRequest(ctx)));
 		app.get("/login", ctx -> ctx.redirect(authenticateController.authenticate(ctx)));
+		
+		//as soon as a users type the url, they get redirected to our the login page which we named LoginPage.html:
+		
+		app.get("/", ctx -> ctx.redirect("/LoginPage.html"));
 	}
 
 }

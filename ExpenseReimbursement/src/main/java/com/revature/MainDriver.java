@@ -28,7 +28,7 @@ public class MainDriver {
 		
 //		RequestHandler rq = new RequestHandler();
 		
-//		RequestHandler.setupEndPoints(app);
+		RequestHandler.setupEndPoints(app);
 		
 	}
 
