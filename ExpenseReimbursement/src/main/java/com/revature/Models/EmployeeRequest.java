@@ -12,33 +12,12 @@ public class EmployeeRequest  {
 	private String status;
 	private String time_of_request;
 	private String amount;
-	
-	
-
-	public EmployeeRequest(int request_id,String email, String reimbursment_type, String time_of_request, String description, String status,
-			String amount) {
-		super();
-		this.request_id=request_id;
-		this.email = email;
-		this.reimbursment_type = reimbursment_type;
-		this.description = description;
-		this.status = status;
-		this.time_of_request = time_of_request;
-		this.amount = amount;
-	}
 	public int getRequest_id() {
 		return request_id;
 	}
-
 	public void setRequest_id(int request_id) {
 		this.request_id = request_id;
 	}
-	
-	public EmployeeRequest() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -63,10 +42,10 @@ public class EmployeeRequest  {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getTimeOfRequest() {
+	public String getTime_of_request() {
 		return time_of_request;
 	}
-	public void setTimeOfRequest(String time_of_request) {
+	public void setTime_of_request(String time_of_request) {
 		this.time_of_request = time_of_request;
 	}
 	public String getAmount() {
@@ -75,13 +54,28 @@ public class EmployeeRequest  {
 	public void setAmount(String amount) {
 		this.amount = amount;
 	}
+	public EmployeeRequest(int request_id, String email, String reimbursment_type, String description, String status,
+			String time_of_request, String amount) {
+		super();
+		this.request_id = request_id;
+		this.email = email;
+		this.reimbursment_type = reimbursment_type;
+		this.description = description;
+		this.status = status;
+		this.time_of_request = time_of_request;
+		this.amount = amount;
+	}
+	public EmployeeRequest() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	@Override
 	public String toString() {
 		return "EmployeeRequest [request_id=" + request_id + ", email=" + email + ", reimbursment_type="
 				+ reimbursment_type + ", description=" + description + ", status=" + status + ", time_of_request="
 				+ time_of_request + ", amount=" + amount + "]";
 	}
-
+	
 	
 
 	

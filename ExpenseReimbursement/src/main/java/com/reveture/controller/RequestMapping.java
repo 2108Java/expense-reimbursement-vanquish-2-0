@@ -17,7 +17,7 @@ import io.javalin.Javalin;
 public class RequestMapping {
 	public static void settingUpEndpoints(Javalin app) {
 		RequestDAOImp re= new RequestDAOImp();
-		EmployeeService es = new EmployeeService();
+		EmployeeService es = new EmployeeService(re);
 		SignupService ss= new SignupService();
 		SignupDAOImp sd = new SignupDAOImp();
 		UserDAO dao=new UserDAO();
@@ -33,7 +33,7 @@ public class RequestMapping {
 		
 		
 		
-		app.get("/api/employee/{position}", ctx -> ctx.json(e.select(ctx)) );
+		app.get("/api/employee/{position}", ctx -> ctx.json(e.selectById(ctx)) );
 		//app.get("/api/employee/{position}", ctx -> ctx.json(e.seeEmployee(ctx)) );
 		app.get("/api/employee", ctx -> ctx.json(e.seeAll()));
 		//app.get("/api/employees", ctx -> ctx.json(e.select(ctx)));
@@ -54,13 +54,18 @@ public class RequestMapping {
 			reqDispatcher.forward(request, response);
 		}
 			);*/
-app.post("/authenticate", ctx -> {
+//app.post("/authenticate", ctx -> {
 			
-			authenticateController.authenticate(ctx);
+			//authenticateController.authenticate(ctx);
 			
-		});
+		//});
+		app.post("/login", 
+				ctx -> ctx.redirect(authenticateController.authenticate(ctx)));
 
 app.post("/insert", ctx -> {e.insert(ctx);});
+
+app.post("/update", ctx -> {e.update(ctx);});
+
 		
 		
 		

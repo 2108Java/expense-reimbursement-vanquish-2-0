@@ -12,7 +12,7 @@ import java.util.Scanner;
 import javax.net.ssl.SSLEngineResult.Status;
 
 import com.revature.Models.EmployeeRequest;
-import com.revature.Models.ReimbursementRequest;
+
 
 public class RequestDAOImp implements RequestDAO {
 	String server = "localhost";
@@ -58,7 +58,7 @@ public class RequestDAOImp implements RequestDAO {
 			 System.out.println("Enter your amount: " );
 			 s1=  sc.nextDouble();*/
 			 
-			 String sql = "INSERT INTO request12 VALUES (?,?,?,?,?,?,?)";
+			 String sql = "INSERT INTO request14 VALUES (?,?,?,?,?,?,?)";
 			 
 			 try(Connection connection = DriverManager.getConnection(url,username,password)){
 			
@@ -72,7 +72,7 @@ public class RequestDAOImp implements RequestDAO {
 				//ps.setReimbursementRequest(2,r.getReimbursementType());
 				ps.setString(4, e.getDescription());
 				ps.setString(5,e.getStatus());
-				ps.setString(6, e.getTimeOfRequest());
+				ps.setString(6, e.getTime_of_request());
 				ps.setString(7, e.getAmount());
 			// ps.setString(1, s);
 			 //ps.setString(3, s2);
@@ -115,7 +115,7 @@ public class RequestDAOImp implements RequestDAO {
 		
 try(Connection connection = DriverManager.getConnection(url,username,password)){
 			
-			String sql = "select * from request12  ";
+			String sql = "select * from request14  ";
 			PreparedStatement ps = connection.prepareStatement(sql);
 			
 			
@@ -198,20 +198,54 @@ return employee;
 	}
 
 	@Override
-	public void update() {
+	public void update(EmployeeRequest e) {
 		// TODO Auto-generated method stub
+		 String sql = "UPDATE request14 set status =? where email=?;";
+		 
+		 try(Connection connection = DriverManager.getConnection(url,username,password)){
+		
+		 
+		 PreparedStatement ps = connection.prepareStatement(sql);
+			
+		    //ps.setInt(1, e.getRequest_id());
+			ps.setString(1,e.getEmail());
+			ps.setString(2,e.getStatus());
+
+			//ps.setReimbursementRequest(2,r.getReimbursementType());
+			//ps.setString(4, e.getDescription());
+			//ps.setString(5,e.getStatus());
+			//ps.setString(6, e.getTimeOfRequest());
+			//ps.setString(7, e.getAmount());
+			
+		 
+			
+			 System.out.println("Congatulation your Update is complete " );
+			
+			
+			ps.execute();
+			
+			
+			
+			success = true;
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
 
 	}
 	@Override
-	public EmployeeRequest selectByEmail( String email) {
+	public EmployeeRequest selectById( int request_id) {
 		// TODO Auto-generated method stub
 		EmployeeRequest u= null;
 		
 try(Connection connection = DriverManager.getConnection(url,username,password)){
 			
-			String sql = "select * from request12 where email=? ";
+			String sql = "select * from request14 where request_id=? ";
 			PreparedStatement ps = connection.prepareStatement(sql);
-			ps.setString(1,e.getEmail());
+			ps.setInt(1,request_id);
 			
 			
 			ResultSet rs = ps.executeQuery();
@@ -220,7 +254,7 @@ try(Connection connection = DriverManager.getConnection(url,username,password)){
 			while(rs.next()) {
 				
 				
-						e=new EmployeeRequest(e.getRequest_id(),e.getEmail(),rs.getString("reimbursment_type"),rs.getString("description"),
+						e=new EmployeeRequest(request_id,rs.getString("email"),rs.getString("reimbursment_type"),rs.getString("description"),
 								rs.getString("status"), rs.getString("time_of_request"), rs.getString("amount")
 								
 						

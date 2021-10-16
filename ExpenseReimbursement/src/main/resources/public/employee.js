@@ -1,45 +1,70 @@
 /**
  * 
  */
+function getEmployee(){
+	let employeeid= document.getElementById("employeeId").value;
+	let basedURL= "http://localhost:9301/api/employee/";
+	let fullUrl = basedURL + employeeid;
+	
+	let xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function(){
+		
+		if(this.status == 200 && this.readyState == 4){
+			//console.log(JSON.parse(this.responseText));
+			let employee = JSON.parse(this.responseText);
+			employee.id=employeeid;
+			console.log(employee);
+			
+			addRow(employee);
+		}
+	}
+	
+	xhttp.open("GET",fullUrl);
+	
+	xhttp.send();
+	
+	
+	
+}
+
+
 
 function getAllEmployee(){
-	
-	let employeeId= document.getElementById("employeeId").value;
-	
-	let fullUrl= "http://localhost:9104/api/employee";
+	let employeeUrl= "http://localhost:9301/api/employee";
 	//let fullUrl = basedURL + employeeId;
 	let xhttp = new XMLHttpRequest();
 	
 	xhttp.onreadystatechange = function(){
-		if(this.status == 200 && this.readyState == 4){
-		console.log(this.responseText);
-		let fullObject = JSON.parse(this.responseText);
-		console.log(fullObject);
-		addAllEmployees(fullObject);
-            //fullObject.id = employeeId;
-             //addRow(fullObject);
+		//console.log(this.readyState);
+		if(this.readyState == 4 && this.status == 200  ){
+		
+		let employeeArray = JSON.parse(this.responseText);
+		console.log(employeeArray);
+		addAllEmployees(employeeArray)
 		}
-		else if(this.status == 404 && this.readyState == 4){
-			console.log("The request was not found by the server")
-		}}
-	xhttp.open("GET", fullUrl);
+		
+		}
+	xhttp.open("GET", employeeUrl);
 	xhttp.send();
 	
+	
 }
-//getAllEmployee();
-
 let button = document.getElementById("employeeSubmit");
 button.addEventListener('click', getAllEmployee);
 
-window.onload = function(){
-	 getAllEmployee();
-	
+//button.addEventListener('click', getEmployee);
+
+window.onload=function(){
+	getAllEmployee();
+	//getEmployee();
 }
 
 
+
 function addRow(employeeRequest){
+
 	
-	console.log(employeeRequest);
+	//console.log(employeeRequest);
 	let tableBody = document.getElementById("starTableBody");
 	let tableRow = document.createElement("tr");
 	

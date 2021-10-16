@@ -64,7 +64,7 @@ else {
 		return x ;
 		
 	}*/
-	public void authenticate(Context ctx) throws ServletException, IOException {
+	public String authenticate(Context ctx) throws ServletException, IOException {
 		
 		String username =ctx.formParam("username");
 		System.out.println(username);
@@ -81,25 +81,41 @@ else {
 		//u.setPassword(password);
 		
         //String x="login.html";
-		boolean authenticated = authService.authenticate(username, password);
-		if(authenticated) {
-			User user = authService.getUser(username);
-			System.out.println(user);
+		//boolean authenticated = authService.authenticate(username, password);
+		//if(authenticated) {
+			//User user = authService.getUser(username);
+			//System.out.println(user);
 			
 			//user.getUsername().equals(username)
 			
-				ctx.res.sendRedirect("request.html");
-			    ctx.sessionAttribute("user", user);
+				//ctx.res.sendRedirect("request.html");
+			    //ctx.sessionAttribute("user", user);
 			
 		
-		}else {
-			ctx.res.sendRedirect("login.html");
+		//}else {
+			//ctx.res.sendRedirect("login.html");
 			
 	//ctx.res.setStatus(401);
+		String page = "";
+		if(ctx.formParam("username").equals("user") 
+				&& ctx.formParam("password").equals("p4ss")){
+			
+					ctx.sessionAttribute("access", true); //we're now giving them access!
+				//page = "PlanetsLandingPage.html";
+					page = "request.html";
+				}else {
+					ctx.sessionAttribute("access",false);
+					//page = "failedLogin.html";
+					page = "login.html";
+				}
+		
+//		if(service.authenticate(ctx.queryParam(username))) What we would do in a full stack. 
+		
+		return page;
 	
 		}
 		
 		
 	}
 
-}
+

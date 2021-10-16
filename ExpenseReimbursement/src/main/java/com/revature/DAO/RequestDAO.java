@@ -1,9 +1,10 @@
 package com.revature.DAO;
 
+
+
 import java.util.List;
 
 import com.revature.Models.EmployeeRequest;
-import com.revature.Models.ReimbursementRequest;
 
 public interface RequestDAO {
 	
@@ -12,7 +13,7 @@ public interface RequestDAO {
 	public List<EmployeeRequest> select();
 	public void delete();
 	
-	public void update();
+	//public void update();
 
 	//void insert(ReimbursementRequest r);
 	void iselect();
@@ -23,7 +24,10 @@ public interface RequestDAO {
 	//EmployeeRequest selectByEmail(String email);
 	//List<EmployeeRequest> selectByEmail();
 	//EmployeeRequest selectByEmail(EmployeeRequest eq);
-	EmployeeRequest selectByEmail(String email);
+	//EmployeeRequest selectByEmail(String email);
+	//EmployeeRequest selectById();
+	EmployeeRequest selectById(int id);
+	void update(EmployeeRequest employeeRequest);
 	
 
 }

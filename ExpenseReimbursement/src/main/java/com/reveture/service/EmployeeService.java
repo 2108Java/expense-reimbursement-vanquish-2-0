@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.revature.DAO.RequestDAOImp;
 import com.revature.Models.EmployeeRequest;
-import com.revature.Models.ReimbursementRequest;
+//import com.revature.Models.ReimbursementRequest;
 
 public class EmployeeService {
 	
@@ -14,9 +14,9 @@ public class EmployeeService {
 	RequestDAOImp re= new RequestDAOImp();
 	EmployeeRequest e1 =new EmployeeRequest();
 	
-	public EmployeeService() {
+	public EmployeeService(RequestDAOImp re) {
 		super();
-		//this.re=re;
+		this.re=re;
 		//initEmployee();
 		
 		//initEmployee();
@@ -26,11 +26,13 @@ public class EmployeeService {
 		List<EmployeeRequest> employee=re.selectByEmail();
 	}*/
 
-	public EmployeeRequest getEmployeeByEmail(String email) throws IndexOutOfBoundsException{
+	public EmployeeRequest getEmployeeById(int request_id ) throws IndexOutOfBoundsException{
 		
-		e1=re.selectByEmail(email);
+		e1=re.selectById(request_id);
+		// employee= re.selectById(request_id);
+		e1.setRequest_id(request_id);
 		
-		return this.e1;
+		return e1;
 	}
 	public List <EmployeeRequest> seeAll() {
 		List <EmployeeRequest> e1 =  re.select();
