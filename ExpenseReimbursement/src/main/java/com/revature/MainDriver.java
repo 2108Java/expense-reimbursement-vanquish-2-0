@@ -3,6 +3,7 @@ package com.revature;
 
 import com.revature.controller.RequestController;
 import com.revature.controller.RequestHandler;
+import com.revature.models.Request;
 
 import io.javalin.Javalin;
 
@@ -41,9 +42,20 @@ public class MainDriver {
 		
 		RequestHandler.setupEndPoints(app);
 		
+		
+		//how to test insertRequest()?
+			//1)the request object fields are provided by the employee when filling out the html form
+			//2)javscript grabs that info and sends it inside of the body of an http request
+			//3)the Context object of Javalin grabs the data sent in the http request body and makes it available to java logic inside the controller
+			//4)the controller calls its method createRequest(Context ctx) 
+			//5) createRequest() invokes the requestService method called submitRequest()
+			//6)submitRequest() calls the dao method insertRequest()
+			//7)Finally, insertRequest() uses sql statement to insert the row into the requests table
 		//use controller to insert a request into database via service->dao
 		RequestController requestController = new RequestController();
-		requestController.create();
+		
+		Request request = new Request("Lodging", 100, "lodging expense","10/12/2021", 1);
+		requestController.createRequest(request);
 		
 	}
 

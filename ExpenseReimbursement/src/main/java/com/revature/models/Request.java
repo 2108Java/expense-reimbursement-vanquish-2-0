@@ -27,13 +27,13 @@ public class Request {
         this.employeeId =  employeeId;  // must match the employee id in the database
     }
     
-    public Request(String requestType, double amount, String description, String requestStatus, String requestDate) {
+    public Request(String requestType, double amount, String description, String requestDate, int employeeId) {
     	
     	this.requestType = requestType;
         this.amount = amount;
         this.description = description;
-        this.requestStatus = requestStatus;
         this.requestDate = requestDate;
+        this.employeeId =  employeeId;
 	}
 
 	public int getEmployeeId() {

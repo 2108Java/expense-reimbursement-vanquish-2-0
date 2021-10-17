@@ -51,10 +51,13 @@ public class RequestController {
 		return requestService.getAllRequests();
 	}
 	
-	public void create() {
+	public void createRequest(Request request){//should take ctx object eventually
 		
-		Request request = new Request("Lodging", 100, "lodging expense", "pending", "10/12/2021");
-		requestService.createRequest(request);
+		//How to retrieve the data fields from ctx to build an request object?
+		
+		//let assume that's done and hardcode them below for now:
+		
+		requestService.submitRequest(request);
 		
 	}
 

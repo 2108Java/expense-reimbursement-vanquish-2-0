@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.PreparedStatement;
 
-
+import com.revature.models.Employee;
 import com.revature.models.Request;
+
+import io.javalin.http.Context;
 
 public class RequestDao {
 	
@@ -53,6 +55,14 @@ public class RequestDao {
 	
 	public boolean insertRequest(Request request) {
 		
+		//a request cannot exist without an employee creating it, 
+		//hence we need an instance of the employee that is making the request
+		// this employee already exist in the employees table, we just need his id
+		//by looking at the employee table, there are currently 6 employees with ids ranging between 1 and 6
+		//let us assume it is employee with id 1 who is making this request.
+		//in this case all we need to do is enter the value 1 as a value for employee id when creating the request object
+		//in fact, we can insert that directly in the sql statement instead of having a place holder denoted by the ? mark:
+	
 		boolean success = false;
 	
 		//1. Connect to database!
@@ -60,17 +70,24 @@ public class RequestDao {
 		try(Connection connection = DriverManager.getConnection(url,username,password)){
 
 			//2. Write a SQL statement String
-			String sql = "INSERT INTO requests VALUES (?,?,?,?,?,?, ?)";
+			//NB: amount and employeeId get specified when an employee is filling out the request form. 
+			//the status is set to  pending by default, and only a manager can change that when processing the request
+			//The selected columns that need to have data inserted into them are:
+			//also, date can be set to automatically be inserted by the database using timestamp syntax, 
+			//for now employee will enter it as a string, but it's simple to modify later
+			
+			
+			String sql = "INSERT INTO requests(request_type, amount, description, request_date, fk_employee_id) VALUES (?,?,?,?,?)";
 
 			PreparedStatement ps = connection.prepareStatement(sql);
-
-			ps.setInt(1, request.getRequestId());
-			ps.setString(2, request.getRequestType());
-			ps.setDouble(3, request.getAmount());
-			ps.setString(4, request.getDescription());
-			ps.setString(5, request.getRequestStatus());
-			ps.setString(6, request.getRequestDate());
-			ps.setInt(7, request.getEmployeeId());
+			
+			//in fact, we don't need to insert a request id, the database does that for us since it's set to serial
+			//ps.setInt(1, request.getRequestId());
+			ps.setString(1, request.getRequestType());
+			ps.setDouble(2, request.getAmount());
+			ps.setString(3, request.getDescription());
+			ps.setString(4, request.getRequestDate());
+			ps.setInt(5, request.getEmployeeId());
 
 			ps.execute();
 

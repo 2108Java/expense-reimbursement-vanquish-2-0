@@ -16,6 +16,8 @@ public class RequestHandler {
 		app.get("/request", ctx -> ctx.json(requestController.getRequestById(ctx)));
 		app.get("/login", ctx -> ctx.redirect(authenticateController.authenticate(ctx)));
 		
+		
+		
 		//as soon as a user types the url, 
 	}
 
