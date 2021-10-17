@@ -23,6 +23,7 @@ public class RequestMapping {
 		UserDAO dao=new UserDAO();
 		EmployeeController e= new EmployeeController(re,es);
 		AutenticateService authService = new AutenticateService(dao);
+		SignupDAOImp signupdao = new SignupDAOImp();
 		
 		Authenticate authenticateController = new Authenticate( authService);
 		re.select();
@@ -31,40 +32,37 @@ public class RequestMapping {
 		//SignupService ss= new SignupService(sd);
 		SignupController sc=new SignupController(sd);
 		
-		
-		
 		app.get("/api/employee/{position}", ctx -> ctx.json(e.selectById(ctx)) );
-		//app.get("/api/employee/{position}", ctx -> ctx.json(e.seeEmployee(ctx)) );
+		
+		app.get("/api/employee/{status}", ctx -> ctx.json(e.selectByStatus(ctx)) );
+		
+		
+		
 		app.get("/api/employee", ctx -> ctx.json(e.seeAll()));
+		
+		
+		
+		
 		//app.get("/api/employees", ctx -> ctx.json(e.select(ctx)));
 		
-		app.get("/api/signup", ctx -> ctx.json(sc.seeAll()));
-	//app.post("/insert", ctx -> ctx.request.html());
-		
-		//app.post("/login" , ctx -> ctx.redirect(authenticateController.authenticate(ctx)));
-		/*app.get("/", ctx -> {
-			HttpServletRequest request = ctx.req;
-			HttpServletResponse response = ctx.res;
+		app.post("/register", ctx -> {e.register(ctx);});
+
+	
 			
-			//This creates an internal endpoint we want to forward to. 
-//			RequestDispatcher reqDispatcher = ctx.req.getRequestDispatcher("Login.html");
-			RequestDispatcher reqDispatcher = ctx.req.getRequestDispatcher("/login");
 			
-			//Also forward them the resust and response objects!
-			reqDispatcher.forward(request, response);
-		}
-			);*/
-//app.post("/authenticate", ctx -> {
-			
-			//authenticateController.authenticate(ctx);
-			
-		//});
 		app.post("/login", 
 				ctx -> ctx.redirect(authenticateController.authenticate(ctx)));
+		
+		app.post("/login1", 
+				ctx -> ctx.redirect(authenticateController.managerAuthen(ctx)));
+	
 
 app.post("/insert", ctx -> {e.insert(ctx);});
 
 app.post("/update", ctx -> {e.update(ctx);});
+
+
+//app.get("/list.html", ctx -> ctx.redirect("/register"));	
 
 		
 		

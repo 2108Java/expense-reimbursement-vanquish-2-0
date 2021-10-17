@@ -71,42 +71,18 @@ else {
 		
 		String password= ctx.formParam("password");
 		System.out.println(password);
-		//User u = new User();
-		//u.setUsername(username);
-		//u.setPassword(password);
 		
-		//s.setEmail(email);
-		//s.setPassword(password);
-		//u.setUsername(username);
-		//u.setPassword(password);
-		
-        //String x="login.html";
-		//boolean authenticated = authService.authenticate(username, password);
-		//if(authenticated) {
-			//User user = authService.getUser(username);
-			//System.out.println(user);
-			
-			//user.getUsername().equals(username)
-			
-				//ctx.res.sendRedirect("request.html");
-			    //ctx.sessionAttribute("user", user);
-			
-		
-		//}else {
-			//ctx.res.sendRedirect("login.html");
-			
-	//ctx.res.setStatus(401);
 		String page = "";
 		if(ctx.formParam("username").equals("user") 
 				&& ctx.formParam("password").equals("p4ss")){
 			
 					ctx.sessionAttribute("access", true); //we're now giving them access!
 				//page = "PlanetsLandingPage.html";
-					page = "request.html";
+					page = "list.html";
 				}else {
 					ctx.sessionAttribute("access",false);
 					//page = "failedLogin.html";
-					page = "login.html";
+					page = "fail.html";
 				}
 		
 //		if(service.authenticate(ctx.queryParam(username))) What we would do in a full stack. 
@@ -114,6 +90,31 @@ else {
 		return page;
 	
 		}
+	
+	public String managerAuthen(Context ctx) throws ServletException, IOException{
+
+		String username =ctx.formParam("username");
+		System.out.println(username);
+		
+		String password= ctx.formParam("password");
+		System.out.println(password);
+		String page = "";
+		if(ctx.formParam("username").equals("manager") 
+				&& ctx.formParam("password").equals("manager")){
+			
+					ctx.sessionAttribute("access", true); //we're now giving them access!
+				//page = "PlanetsLandingPage.html";
+					page = "list1.html";
+				}else {
+					ctx.sessionAttribute("access",false);
+					//page = "failedLogin.html";
+					page = "fail1.html";
+				}
+		
+//		if(service.authenticate(ctx.queryParam(username))) What we would do in a full stack. 
+		
+		return page;
+	}
 		
 		
 	}

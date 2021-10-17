@@ -3,7 +3,32 @@
  */
 function getEmployee(){
 	let employeeid= document.getElementById("employeeId").value;
-	let basedURL= "http://localhost:9301/api/employee/";
+	let basedURL= "http://localhost:9302/api/employee/";
+	let fullUrl = basedURL + employeeid;
+	
+	let xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function(){
+		
+		if(this.status == 200 && this.readyState == 4){
+			//console.log(JSON.parse(this.responseText));
+			let employee = JSON.parse(this.responseText);
+			employee.id=employeeid;
+			console.log(employee);
+			
+			addRow(employee);
+		}
+	}
+	
+	xhttp.open("GET",fullUrl);
+	
+	xhttp.send();
+	
+	
+	
+}
+function getStatus(){
+	let employeeid= document.getElementById("employeeId").value;
+	let basedURL= "http://localhost:9302/api/employee/";
 	let fullUrl = basedURL + employeeid;
 	
 	let xhttp = new XMLHttpRequest();
@@ -30,7 +55,7 @@ function getEmployee(){
 
 
 function getAllEmployee(){
-	let employeeUrl= "http://localhost:9301/api/employee";
+	let employeeUrl= "http://localhost:9302/api/employee";
 	//let fullUrl = basedURL + employeeId;
 	let xhttp = new XMLHttpRequest();
 	
@@ -50,13 +75,13 @@ function getAllEmployee(){
 	
 }
 let button = document.getElementById("employeeSubmit");
-button.addEventListener('click', getAllEmployee);
+//button.addEventListener('click', getAllEmployee);
 
-//button.addEventListener('click', getEmployee);
+button.addEventListener('click', getStatus);
 
 window.onload=function(){
-	getAllEmployee();
-	//getEmployee();
+	//getAllEmployee();
+	getStatus();
 }
 
 

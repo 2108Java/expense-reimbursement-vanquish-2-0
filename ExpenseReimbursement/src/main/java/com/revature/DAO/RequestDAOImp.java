@@ -37,26 +37,6 @@ public class RequestDAOImp implements RequestDAO {
 		
 		
 		
-		/*System.out.println("Enter your Email: ");
-			s=  sc.nextLine();
-			
-
-			
-			 
-		    System.out.println("Enter your reimbursement Type: " );
-			 //s2=  sc.nextLine();
-			 
-			 System.out.println("Enter you description:");
-			 s3=  sc.nextLine();
-			 
-			 System.out.println("your status is:" + s4);
-			s4= "pending";
-			 
-			 System.out.println("Time of request:");
-			 s5=  sc.nextLine();
-			 
-			 System.out.println("Enter your amount: " );
-			 s1=  sc.nextDouble();*/
 			 
 			 String sql = "INSERT INTO request14 VALUES (?,?,?,?,?,?,?)";
 			 
@@ -131,17 +111,7 @@ try(Connection connection = DriverManager.getConnection(url,username,password)){
 						
 						);
 				
-				/*String email=rs.getString("email");
 				
-				Double amount=rs.getDouble("amount");
-				String d=rs.getString("description");
-				 a= rs.getString("status");
-				 b=rs.getString("timeOfRequest");
-				 String r=rs.getString("reimbursementType");*/
-				 
-				 
-				// System.out.println("Email is:- " + email + "reimbursement Type is: "  +
-		                    //" description is:- " + d +"status is"+ a + "time of request is" + b + r + " amount is:- " +amount);
 
 				}
 			
@@ -156,41 +126,7 @@ try(Connection connection = DriverManager.getConnection(url,username,password)){
 return employee;
 
 	}
-	/*public void iselect() {
-		try(Connection connection = DriverManager.getConnection(url,username,password)){
-		String sql = "select * from request1 where email=? ";
-		PreparedStatement ps = connection.prepareStatement(sql);
-		ps.setNString(0, s);
-		
-		
-		ResultSet rs = ps.executeQuery();
-		while(rs.next()) {
-			
-			String email=rs.getString("email");
-			
-			Double amount=rs.getDouble("amount");
-			String d=rs.getString("description");
-			 a= rs.getString("status");
-			 b=rs.getString("timeOfRequest");
-			 String r=rs.getString("reimbursementType");
-			 
-			 
-			 System.out.println("Email is:- " + email + "reimbursement Type is: " + r + " amount is:- " +amount +
-	                    " description is:- " + d +"status is"+ a + "time of request is" + b );
-
-			}
-		
-		
-		
-		
-		}
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}*/
-
+	
 	@Override
 	public void delete() {
 		// TODO Auto-generated method stub
@@ -200,7 +136,7 @@ return employee;
 	@Override
 	public void update(EmployeeRequest e) {
 		// TODO Auto-generated method stub
-		 String sql = "UPDATE request14 set status =? where email=?;";
+		 String sql = "UPDATE request14 set status =? where email=?";
 		 
 		 try(Connection connection = DriverManager.getConnection(url,username,password)){
 		
@@ -209,7 +145,9 @@ return employee;
 			
 		    //ps.setInt(1, e.getRequest_id());
 			ps.setString(1,e.getEmail());
+			 System.out.println(e.getEmail());
 			ps.setString(2,e.getStatus());
+			System.out.println(e.getStatus());
 
 			//ps.setReimbursementRequest(2,r.getReimbursementType());
 			//ps.setString(4, e.getDescription());
@@ -222,7 +160,7 @@ return employee;
 			 System.out.println("Congatulation your Update is complete " );
 			
 			
-			ps.execute();
+			ps.executeUpdate();
 			
 			
 			
@@ -237,15 +175,16 @@ return employee;
 
 	}
 	@Override
-	public EmployeeRequest selectById( int request_id) {
+	public EmployeeRequest selectByStatus( String status) {
 		// TODO Auto-generated method stub
-		EmployeeRequest u= null;
+		//List<EmployeeRequest>	employee= null;
+		EmployeeRequest employee=null;
 		
 try(Connection connection = DriverManager.getConnection(url,username,password)){
-			
-			String sql = "select * from request14 where request_id=? ";
+	
+			String sql = "select * from request14 where status=? ";
 			PreparedStatement ps = connection.prepareStatement(sql);
-			ps.setInt(1,request_id);
+			ps.setString(1,status);
 			
 			
 			ResultSet rs = ps.executeQuery();
@@ -254,26 +193,15 @@ try(Connection connection = DriverManager.getConnection(url,username,password)){
 			while(rs.next()) {
 				
 				
-						e=new EmployeeRequest(request_id,rs.getString("email"),rs.getString("reimbursment_type"),rs.getString("description"),
-								rs.getString("status"), rs.getString("time_of_request"), rs.getString("amount")
+				employee=new EmployeeRequest(rs.getInt("request_id"),rs.getString("email"),rs.getString("reimbursment_type"),rs.getString("description"),
+								status, rs.getString("time_of_request"), rs.getString("amount"));
 								
 						
 						
-						);
+						
 						
 						
 				
-				/*String email=rs.getString("email");
-				
-				Double amount=rs.getDouble("amount");
-				String d=rs.getString("description");
-				 a= rs.getString("status");
-				 b=rs.getString("timeOfRequest");
-				 String r=rs.getString("reimbursementType");*/
-				 
-				 
-				// System.out.println("Email is:- " + email + "reimbursement Type is: "  +
-		                    //" description is:- " + d +"status is"+ a + "time of request is" + b + r + " amount is:- " +amount);
 
 				}
 			
@@ -285,7 +213,49 @@ try(Connection connection = DriverManager.getConnection(url,username,password)){
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-return e;
+       return employee;
+
+
+	}
+	@Override
+	public EmployeeRequest selectById( int request_id) {
+		// TODO Auto-generated method stub
+		EmployeeRequest	u1= null;
+		
+try(Connection connection = DriverManager.getConnection(url,username,password)){
+	
+			String sql = "select * from request14 where request_id=? ";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setInt(1,request_id);
+			
+			
+			ResultSet rs = ps.executeQuery();
+			//ReimbursementType re = ReimbursementType.valueOf(rs.getString("reimbursment_type"));
+			//Status status =Status.valueOf(rs.getString("status"));
+			while(rs.next()) {
+				
+				
+					u1=new EmployeeRequest(request_id,rs.getString("email"),rs.getString("reimbursment_type"),rs.getString("description"),
+							rs.getString("status"), rs.getString("time_of_request"), rs.getString("amount")
+								
+						
+						
+						);
+						
+						
+				
+
+				}
+			
+			
+			
+			
+			}
+			catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+       return u1;
 
 
 	}
