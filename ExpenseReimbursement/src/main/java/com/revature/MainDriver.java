@@ -4,6 +4,7 @@ package com.revature;
 import com.revature.controller.RequestController;
 import com.revature.controller.RequestHandler;
 import com.revature.models.Request;
+import com.revature.service.ManagerService;
 
 import io.javalin.Javalin;
 
@@ -52,10 +53,19 @@ public class MainDriver {
 			//6)submitRequest() calls the dao method insertRequest()
 			//7)Finally, insertRequest() uses sql statement to insert the row into the requests table
 		//use controller to insert a request into database via service->dao
-		RequestController requestController = new RequestController();
 		
-		Request request = new Request("Lodging", 100, "lodging expense","10/12/2021", 1);
-		requestController.createRequest(request);
+		
+		//testing request insertion into database
+	
+//		RequestController requestController = new RequestController();
+//		Request request = new Request("Travel", 250, "travel expense","10/15/2021", 2);
+//		requestController.createRequest(request);
+		
+		//testing updating request in the database by manager 
+		
+//		ManagerService managerService = new ManagerService();
+//		managerService.handleRequest(7, "approved");
+//		managerService.handleRequest(3, "denied");
 		
 	}
 

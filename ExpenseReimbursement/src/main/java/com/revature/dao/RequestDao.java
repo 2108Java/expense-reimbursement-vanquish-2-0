@@ -56,12 +56,11 @@ public class RequestDao {
 	public boolean insertRequest(Request request) {
 		
 		//a request cannot exist without an employee creating it, 
-		//hence we need an instance of the employee that is making the request
-		// this employee already exist in the employees table, we just need his id
-		//by looking at the employee table, there are currently 6 employees with ids ranging between 1 and 6
+		// this employee should already exist in the employees table, we just need his/her id as an input in the form when a request is created
+		//by looking at the employee table, there are currently 6 employees with ids ranging from 1 to  6
 		//let us assume it is employee with id 1 who is making this request.
-		//in this case all we need to do is enter the value 1 as a value for employee id when creating the request object
-		//in fact, we can insert that directly in the sql statement instead of having a place holder denoted by the ? mark:
+		//in this case all we need to do is enter the value 1 as a value for fk_employee_id when inserting the request object to database
+		
 	
 		boolean success = false;
 	
@@ -70,6 +69,7 @@ public class RequestDao {
 		try(Connection connection = DriverManager.getConnection(url,username,password)){
 
 			//2. Write a SQL statement String
+			
 			//NB: amount and employeeId get specified when an employee is filling out the request form. 
 			//the status is set to  pending by default, and only a manager can change that when processing the request
 			//The selected columns that need to have data inserted into them are:
@@ -94,7 +94,7 @@ public class RequestDao {
 			success = true;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
@@ -125,7 +125,7 @@ public class RequestDao {
 						rs.getString("description"),
 						rs.getString("request_status"),
 						rs.getString("request_date"),
-						rs.getInt("employee_id")
+						rs.getInt("fk_employee_id")
 						));
 
 			}
@@ -138,7 +138,7 @@ public class RequestDao {
 	}
 	
 	
-	public boolean updateRequest(int requestId, String requestStatus) {
+	public boolean updateRequest(int requestId, String decision) {
 		
 		boolean success = false;
 		
@@ -146,11 +146,11 @@ public class RequestDao {
 		
 		try(Connection connection = DriverManager.getConnection(url,username,password)){
 
-			String sql = "UPDATE table requests SET request_status = ? WHERE id = ?";
+			String sql = "UPDATE table requests SET request_status = ? WHERE request_id = ?";
 
 			PreparedStatement ps = connection.prepareStatement(sql);
 			
-			ps.setString(1, requestStatus);
+			ps.setString(1, decision);
 			ps.setInt(2, requestId);
 
 			ps.execute();

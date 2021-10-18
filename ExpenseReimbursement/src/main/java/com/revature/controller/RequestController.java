@@ -1,7 +1,9 @@
 package com.revature.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.revature.dao.RequestDao;
 import com.revature.models.Request;
 import com.revature.service.RequestService;
 
@@ -34,12 +36,12 @@ public class RequestController {
 		
 		//returning a Request that employee wants
 		// this id should match the one in the handler
-		String stringId = ctx.pathParam("request_id");
-		int request_id = Integer.parseInt(stringId);
+		String stringId = ctx.formParam("requestId");
+		int requestId = Integer.parseInt(stringId);
 		
-		ctx.res.setStatus(418);
+		ctx.res.setStatus(200);
 		
-		return requestService.getRequest(request_id);
+		return requestService.getRequestById(requestId);
 		
 	}
 
@@ -47,18 +49,50 @@ public class RequestController {
 	public List<Request> getRequestList(Context ctx) {
 		
 		ctx.res.setStatus(200);
-			
+
 		return requestService.getAllRequests();
 	}
 	
 	public void createRequest(Request request){//should take ctx object eventually
 		
-		//How to retrieve the data fields from ctx to build an request object?
+		//How to retrieve the data fields from ctx to build a request object?
 		
-		//let assume that's done and hardcode them below for now:
+		//let's assume that's done and hardcode them below for now:
 		
 		requestService.submitRequest(request);
 		
+	}
+
+
+	public void processRequest(int requestId, String decision) {
+		
+		RequestDao requestDao = new RequestDao();
+		
+		requestDao.updateRequest(requestId, decision);
+		
+	}
+	
+	public boolean createRequest(Context ctx) {
+		
+		//creating a brand new request object using info provided in ctx:
+		
+		ctx.res.setStatus(200);
+		
+		boolean success = false;
+		
+		int requestIdInput = Integer.parseInt(ctx.formParam("requestId"));
+		String requestTypeInput = ctx.formParam("requestType");
+		double amountInput = Double.parseDouble(ctx.formParam("amount"));
+		String descriptionInput = ctx.formParam("description");
+		String requestStatusInput = ctx.formParam("requestStatus");
+		String requestDateInput = ctx.formParam("requestDate");
+		int employeeIdInput = Integer.parseInt(ctx.formParam("employeeId"));
+		
+		Request request = new Request(requestIdInput, requestTypeInput, amountInput, requestStatusInput, descriptionInput, requestDateInput, employeeIdInput);
+		
+		requestService.submitRequest(request);
+		
+		return success;
 	}
 
 		
