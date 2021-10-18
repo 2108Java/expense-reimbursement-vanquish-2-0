@@ -61,6 +61,8 @@ app.post("/insert", ctx -> {e.insert(ctx);});
 
 app.post("/update", ctx -> {e.update(ctx);});
 
+app.get("/register", ctx -> ctx.redirect("/login.html"));	
+
 
 //app.get("/list.html", ctx -> ctx.redirect("/register"));	
 

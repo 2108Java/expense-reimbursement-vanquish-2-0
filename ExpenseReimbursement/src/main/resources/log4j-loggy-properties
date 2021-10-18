@@ -1,0 +1,18 @@
+2021-10-17 21:37:15 INFO  EmployeeController:145 - request_id20
+2021-10-17 21:37:15 INFO  EmployeeController:150 - email ismalika.madlamane@gmail.com
+2021-10-17 21:37:15 INFO  EmployeeController:157 - description isbusiness
+2021-10-17 21:37:15 INFO  EmployeeController:161 - status ispending
+2021-10-17 21:37:15 INFO  EmployeeController:166 - time_of_request is10/2/2021
+2021-10-17 21:37:15 INFO  EmployeeController:172 - amount is8000
+2021-10-17 21:40:26 INFO  EmployeeController:145 - request_id21
+2021-10-17 21:40:26 INFO  EmployeeController:150 - email ismalika.madlamane@gmail.com
+2021-10-17 21:40:26 INFO  EmployeeController:157 - description isbusiness
+2021-10-17 21:40:26 INFO  EmployeeController:161 - status isapproved
+2021-10-17 21:40:26 INFO  EmployeeController:166 - time_of_request is10/2/2021
+2021-10-17 21:40:26 INFO  EmployeeController:172 - amount is90000
+2021-10-17 21:41:07 INFO  EmployeeController:76 - request id is : 1
+2021-10-17 21:41:07 INFO  EmployeeController:83 - request isEmployeeRequest [request_id=1, email=john@gmail.com, reimbursment_type=travel, description=business, status=approved, time_of_request=1020, amount=9000]
+2021-10-17 21:41:14 INFO  EmployeeController:76 - request id is : 2
+2021-10-17 21:41:14 INFO  EmployeeController:83 - request isEmployeeRequest [request_id=2, email=mary@gmail.com, reimbursment_type=travel, description=business, status=pending, time_of_request=10/2/2021, amount=9000]
+2021-10-17 21:41:19 INFO  EmployeeController:76 - request id is : 3
+2021-10-17 21:41:19 INFO  EmployeeController:83 - request isEmployeeRequest [request_id=3, email=lili@gmail.com, reimbursment_type=food, description=business, status=pending, time_of_request=10/2/2021, amount=9000]

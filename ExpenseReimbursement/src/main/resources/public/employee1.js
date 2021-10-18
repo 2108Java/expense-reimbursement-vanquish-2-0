@@ -1,47 +1,33 @@
 /**
  * 
  */
-function getEmployee(){
-	let employeeid= document.getElementById("employeeId").value;
-	let basedURL= "http://localhost:9303/api/employee/";
-	let fullUrl = basedURL + employeeid;
-	
+function getAllEmployee(){
+	let employeeUrl= "http://localhost:9303/api/employee";
+	//let fullUrl = basedURL + employeeId;
 	let xhttp = new XMLHttpRequest();
+	
 	xhttp.onreadystatechange = function(){
+		//console.log(this.readyState);
+		if(this.readyState == 4 && this.status == 200  ){
 		
-		if(this.status == 200 && this.readyState == 4){
-			//console.log(JSON.parse(this.responseText));
-			let employee = JSON.parse(this.responseText);
-			employee.id=employeeid;
-			console.log(employee);
-			
-			addRow(employee);
+		let employeeArray = JSON.parse(this.responseText);
+		console.log(employeeArray);
+		addAllEmployees(employeeArray)
 		}
-	}
-	
-	xhttp.open("GET",fullUrl);
-	
+		
+		}
+	xhttp.open("GET", employeeUrl);
 	xhttp.send();
 	
 	
-	
 }
-
-
-
-
-
 let button = document.getElementById("employeeSubmit");
-//button.addEventListener('click', getAllEmployee);
-
-button.addEventListener('click', getEmployee);
+button.addEventListener('click', getAllEmployee);
 
 window.onload=function(){
-	getEmployee();
-	//getStatus();
+	getAllEmployee();
+	
 }
-
-
 
 function addRow(employeeRequest){
 

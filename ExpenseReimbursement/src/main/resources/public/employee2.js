@@ -1,7 +1,8 @@
 /**
  * 
  */
-function getEmployee(){
+
+function getStatus(){
 	let employeeid= document.getElementById("employeeId").value;
 	let basedURL= "http://localhost:9303/api/employee/";
 	let fullUrl = basedURL + employeeid;
@@ -16,6 +17,7 @@ function getEmployee(){
 			console.log(employee);
 			
 			addRow(employee);
+			//addAllEmployees(employee);
 		}
 	}
 	
@@ -26,23 +28,15 @@ function getEmployee(){
 	
 	
 }
-
-
-
-
-
 let button = document.getElementById("employeeSubmit");
-//button.addEventListener('click', getAllEmployee);
 
-button.addEventListener('click', getEmployee);
+
+button.addEventListener('click', getStatus);
 
 window.onload=function(){
-	getEmployee();
-	//getStatus();
+	
+	getStatus();
 }
-
-
-
 function addRow(employeeRequest){
 
 	
@@ -83,8 +77,3 @@ function addRow(employeeRequest){
     tableBody.appendChild(tableRow);
     
 }
-function addAllEmployees(fullObject){
-	
-	for(let employeeRequest of fullObject){
-		addRow(employeeRequest);
-	}}
