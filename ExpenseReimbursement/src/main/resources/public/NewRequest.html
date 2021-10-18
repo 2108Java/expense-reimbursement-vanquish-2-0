@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reimbursement Request App </title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!--
+        My goal: 
+            To interact with the Star Wars API 
+
+            Get information on people: name, height, birth year 
+
+            Keep track of all the queries I've done, and append it to a table. 
+
+    -->
+    <div class = "container">
+        <div class = "jumbotron text-center">
+            <h3 id = "requestTitle">Form for submitting a new request</h3>
+            <span class = "label label-success"></span>
+        </div>
+    </div>
+
+    <div class = "info">
+        
+    </div>
+
+    <!-- Inputs -->
+    <div class = "container">
+        <input type="text" id="requestId" placeholder="Enter Request's id" class = "form-control">
+        <input type="text" id="requestType" placeholder="Enter Request's type" class = "form-control">
+        <input type="text" id="amount" placeholder="Enter Request's amount" class = "form-control">
+        <input type="text" id="description" placeholder="Enter Request's description" class = "form-control">
+        <input type="text" id="requestStatus" placeholder="Enter Request's status" class = "form-control">
+        <input type="text" id="requestDate" placeholder="Enter Request's date" class = "form-control">
+        <input type="text" id="employeeId" placeholder="Enter employee's id" class = "form-control">
+        <input type="text" id="" placeholder="Enter Request's Id" class = "form-control">
+        <input type="submit" class="form-control btn btn-success" id="requestSubmit">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="RequestsDemo.js"></script>
+</body>
+</html>

@@ -1,6 +1,37 @@
 /**
  * 
+ 
  */
+ 
+ 
+ function addRequest(){ //submitting a new request
+
+   // let newRequestFormInput = document.getElementById("submitRequest");
+    
+    let baseUrl = "http://localhost:9000/NewRequest/";
+    
+    
+    let xhttp = new XMLHttpRequest();
+    
+    xhttp.onreadystatechange = function(){
+        
+        if(this.status == 200 && this.readyState == 4){
+            let request = JSON.parse(this.responseText);
+            console.log(request);
+            
+            addRow(request);
+        }
+    }
+    
+    xhttp.open("POST",baseUrl);
+    
+    xhttp.send();
+    
+}
+
+let button = document.getElementById("submitRequest");
+button.addEventListener('click',addRequest());
+ 
  
 function getRequest(){ //getting a single request
 

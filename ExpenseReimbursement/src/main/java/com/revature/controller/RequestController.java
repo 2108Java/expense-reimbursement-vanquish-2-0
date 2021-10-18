@@ -72,7 +72,7 @@ public class RequestController {
 		
 	}
 	
-	public boolean createRequest(Context ctx) {
+	public String createRequest(Context ctx) {
 		
 		//creating a brand new request object using info provided in ctx:
 		
@@ -92,7 +92,9 @@ public class RequestController {
 		
 		requestService.submitRequest(request);
 		
-		return success;
+		System.out.println("Successfully inserted object into database");
+		
+		return "Success";
 	}
 
 		
