@@ -205,4 +205,40 @@ public class RequestDao {
 		return employeeRequests;
 	}
 
+
+	public List<Request> selectEmployeePendingRequests(int employeeId) {
+		
+		List<Request> employeePendingRequests = new ArrayList<>();	
+		
+		String sql = "SELECT * FROM requests WHERE fk_employee_id = ? AND request_status ILIKE 'pending'";
+
+		try{
+			Connection connection = DriverManager.getConnection(url, username, password);
+			
+			PreparedStatement ps = connection.prepareStatement(sql);
+			
+			ps.setInt(1, employeeId);
+			
+			ResultSet rs = ps.executeQuery();
+
+			
+			while(rs.next()) {
+				employeePendingRequests.add(new Request(
+						rs.getInt("request_id"),
+						rs.getString("request_type"),
+						rs.getDouble("amount"),
+						rs.getString("description"),
+						rs.getString("request_status"),
+						rs.getString("request_date"),
+						rs.getInt("fk_employee_id")
+						));
+				
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return employeePendingRequests;
+	}
+
 }

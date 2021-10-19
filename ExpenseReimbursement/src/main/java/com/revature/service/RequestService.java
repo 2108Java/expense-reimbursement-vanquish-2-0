@@ -35,4 +35,9 @@ public class RequestService {
 		return requestDao.selectEmployeeRequests(employeeId);
 	}
 
+	public List<Request> getEmployeePendingRequests(int employeeId) {
+		
+		return requestDao.selectEmployeePendingRequests(employeeId);
+	}
+
 }

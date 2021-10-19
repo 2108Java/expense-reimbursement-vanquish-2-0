@@ -111,6 +111,15 @@ public class RequestController {
 		return requestService.getEmployeeRequests(employeeIdInput);
 
 	}
+
+
+	public List<Request> getMyPendingRequests(Context ctx) {
+		
+		int employeeIdInput = Integer.parseInt(ctx.formParam("employeeId"));
+		
+		ctx.res.setStatus(200);
+		return requestService.getEmployeePendingRequests(employeeIdInput) ;
+	}
 	
 	
 	

@@ -20,14 +20,16 @@ public class RequestHandler {
 		//controller retrieves request object fields from ctx, then passes request object to  service, 
 		//which calls dao, which inserts request obj to database
 		//this can be tested in postman by passing request object fields to check functionality
-		app.post("/NewRequest", ctx -> {
+		app.post("/newRequest", ctx -> {
 			ctx.redirect(requestController.createRequest(ctx));
 			
 		});
 		
 		//we want an employee to view past requests:
-		
 		app.get("/pastRequests/{employeeIdInput}", ctx -> ctx.json(requestController.getRequestsByEmployeeId(ctx)));
+		
+		//employee can filter his requests to view the ones pending:
+		app.get("myPendingRequests/{employeeIdInput}", ctx -> ctx.json(requestController.getMyPendingRequests(ctx)));
  
 	}
 
