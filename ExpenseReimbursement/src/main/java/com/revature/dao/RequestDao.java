@@ -77,17 +77,18 @@ public class RequestDao {
 			//for now employee will enter it as a string, but it's simple to modify later
 			
 			
-			String sql = "INSERT INTO requests(request_type, amount, description, request_date, fk_employee_id) VALUES (?,?,?,?,?)";
+			String sql = "INSERT INTO requests(request_type, amount, description,request_status request_date, fk_employee_id) VALUES (?,?,?,?,?,?,?)";
 
 			PreparedStatement ps = connection.prepareStatement(sql);
 			
 			//in fact, we don't need to insert a request id, the database does that for us since it's set to serial
-			//ps.setInt(1, request.getRequestId());
-			ps.setString(1, request.getRequestType());
-			ps.setDouble(2, request.getAmount());
-			ps.setString(3, request.getDescription());
-			ps.setString(4, request.getRequestDate());
-			ps.setInt(5, request.getEmployeeId());
+			ps.setInt(1, request.getRequestId());
+			ps.setString(2, request.getRequestType());
+			ps.setDouble(3, request.getAmount());
+			ps.setString(4, request.getDescription());
+			ps.setString(5, request.getRequestStatus());
+			ps.setString(6, request.getRequestDate());
+			ps.setInt(7, request.getEmployeeId());
 
 			ps.execute();
 
@@ -165,6 +166,43 @@ public class RequestDao {
 		
 		return success;
 		
+	}
+
+
+	public List<Request> selectEmployeeRequests(int employeeId) {
+		
+		
+		List<Request> employeeRequests = new ArrayList<>();	
+		
+		String sql = "SELECT * FROM requests WHERE fk_employee_id = ?";
+
+		try{
+			Connection connection = DriverManager.getConnection(url, username, password);
+			
+			PreparedStatement ps = connection.prepareStatement(sql);
+			
+			ps.setInt(1, employeeId);
+			
+			ResultSet rs = ps.executeQuery();
+
+			
+			while(rs.next()) {
+				employeeRequests.add(new Request(
+						rs.getInt("request_id"),
+						rs.getString("request_type"),
+						rs.getDouble("amount"),
+						rs.getString("description"),
+						rs.getString("request_status"),
+						rs.getString("request_date"),
+						rs.getInt("fk_employee_id")
+						));
+				
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return employeeRequests;
 	}
 
 }

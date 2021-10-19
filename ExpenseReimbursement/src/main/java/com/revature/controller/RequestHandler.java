@@ -11,6 +11,7 @@ public class RequestHandler {
 		RequestController requestController = new RequestController();
 		AuthenticateController authenticateController = new AuthenticateController();
 		
+		//routes for requests
 		
 		app.get("/requests", ctx -> ctx.json(requestController.getRequestList(ctx)));
 		app.get("/request/{requestIdInput}", ctx -> ctx.json(requestController.getRequestById(ctx)));
@@ -24,6 +25,9 @@ public class RequestHandler {
 			
 		});
 		
+		//we want an employee to view past requests:
+		
+		app.get("/pastRequests/{employeeIdInput}", ctx -> ctx.json(requestController.getRequestsByEmployeeId(ctx)));
  
 	}
 

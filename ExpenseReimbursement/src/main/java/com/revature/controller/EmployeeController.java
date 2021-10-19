@@ -34,6 +34,14 @@ public class EmployeeController {
 		return success;
 	}
 	
+//	public void viewPastTickets() {
+//		
+//	}
+//	
+//	public void viewPendingRequest() {
+//		
+//	}
+	
 	//update
 	//destroy
 

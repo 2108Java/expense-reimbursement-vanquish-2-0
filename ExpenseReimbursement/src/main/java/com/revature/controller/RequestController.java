@@ -50,8 +50,6 @@ public class RequestController {
 
 		//creating a brand new request object using info provided in ctx:
 
-		ctx.res.setStatus(200);
-
 		boolean success = false;
 
 		int requestIdInput = Integer.parseInt(ctx.formParam("requestId"));
@@ -66,8 +64,8 @@ public class RequestController {
 
 		requestService.submitRequest(request);
 
-		System.out.println("Successfully inserted object into database");
-
+		ctx.res.setStatus(200);
+		
 		return "Success";
 	}
 	
@@ -104,6 +102,17 @@ public class RequestController {
 		
 		return success;
 	}
+
+
+	public List<Request> getRequestsByEmployeeId(Context ctx) {
+		
+		int employeeIdInput = Integer.parseInt(ctx.formParam("employeeId"));
+		
+		return requestService.getEmployeeRequests(employeeIdInput);
+
+	}
+	
+	
 	
 	
 	

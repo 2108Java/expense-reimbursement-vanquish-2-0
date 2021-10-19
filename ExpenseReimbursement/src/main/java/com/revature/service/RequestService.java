@@ -30,4 +30,9 @@ public class RequestService {
 		requestDao.insertRequest(request);
 	}
 
+	public List<Request> getEmployeeRequests(int employeeId) {
+		
+		return requestDao.selectEmployeeRequests(employeeId);
+	}
+
 }
