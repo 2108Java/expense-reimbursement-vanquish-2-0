@@ -13,7 +13,7 @@ public class RequestHandler {
 		
 		
 		app.get("/requests", ctx -> ctx.json(requestController.getRequestList(ctx)));
-		app.get("/request", ctx -> ctx.json(requestController.getRequestById(ctx)));
+		app.get("/request/{id}", ctx -> ctx.json(requestController.getRequestById(ctx)));
 		app.get("/login", ctx -> ctx.redirect(authenticateController.authenticate(ctx)));
 		
 		//controller retrieves request object fields from ctx, then passes request object to  service, 

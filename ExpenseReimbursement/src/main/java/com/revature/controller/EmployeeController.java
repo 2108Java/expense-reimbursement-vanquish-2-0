@@ -1,29 +1,40 @@
 package com.revature.controller;
 
+import com.revature.models.Employee;
 import com.revature.service.EmployeeService;
 
 public class EmployeeController {
 	
 	EmployeeService employeeService = new EmployeeService();
-	
-	public int retreiveEmployeeId(){
-		
-		return employeeService.getEmployeeId();
+	//index
+	//show methods:
+	public Employee retreiveEmployeeById(int id){
+
+		return employeeService.getEmployeeById(id);
 	}
 	
-	public String retrieveEmployeeEmail() {
-		
-		return employeeService.getEployeeEmail();
+	
+	public Employee retrieveEmployeeByEmail(String email) {
+
+		return employeeService.getEployeeByEmail(email);
 	}
 	
-	public String retrieveEmployeeUsername() {
-		return employeeService.getEmployeeUsername();
+	
+	public Employee retrieveEmployeeByUsername(String username) {
+		return employeeService.getEmployeeByUsername(username);
 	}
 	
-	public String retrieveEmployeePassword() {
+	//create. Adds an employee to the employees table in database via service then dao layers
+	public boolean registerEmployee(Employee employee) {
 		
-		return employeeService.getEmployeePassword();
+		EmployeeService employeeService = new EmployeeService();
+		boolean success = false;
+		employeeService.addEmployee(employee);
 		
+		return success;
 	}
+	
+	//update
+	//destroy
 
 }

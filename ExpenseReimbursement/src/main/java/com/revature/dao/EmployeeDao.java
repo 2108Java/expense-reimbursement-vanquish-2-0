@@ -14,37 +14,17 @@ public class EmployeeDao {
 	String url = "jdbc:postgresql://localhost/";
 	String username = "postgres";
 	String password = "";
-
-	public int selectEmployeeId() {
-
-		return 0;
-	}
-
-	public String selectEmployeeEmail() {
-
-		return "";
-	}
-
-	public String selectEmployeeUsername() {
-
-		return "";
-	}
-
-	public String selectEmployeePassword() {
-
-		return "";
-	}
-
+	
 	public Employee selectEmployeeById(int id) {
-		
+
 		Employee employee = null;	
 		try{
 			Connection connection = DriverManager.getConnection(url, username, password);
-			
+
 			String sql = "SELECT * FROM employees WHERE employeeId = ?";
 
 			PreparedStatement ps = connection.prepareStatement(sql);
-			
+
 			ps.setInt(1, id);
 
 			ResultSet rs = ps.executeQuery();
@@ -66,5 +46,73 @@ public class EmployeeDao {
 		return employee;
 
 	}
+
+
+	public Employee selectEmployeeByEmail(String email) {
+		Employee employee = null;	
+		try{
+			Connection connection = DriverManager.getConnection(url, username, password);
+
+			String sql = "SELECT * FROM employees WHERE employeeId = ?";
+
+			PreparedStatement ps = connection.prepareStatement(sql);
+
+			ps.setString(1, email);
+
+			ResultSet rs = ps.executeQuery();
+
+
+			while(rs.next()) {
+				employee = (new Employee(
+						rs.getInt("employee_id"),
+						rs.getString("email"),
+						rs.getString("username"),
+						rs.getString("password")
+						));
+
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+
+		return employee;
+	}
+
+	public Employee selectEmployeeByUsername(String username) {
+
+		Employee employee = null;	
+		try{
+			Connection connection = DriverManager.getConnection(url, username, password);
+
+			String sql = "SELECT * FROM employees WHERE employeeId = ?";
+
+			PreparedStatement ps = connection.prepareStatement(sql);
+
+			ps.setString(1, username);
+
+			ResultSet rs = ps.executeQuery();
+
+
+			while(rs.next()) {
+				employee = (new Employee(
+						rs.getInt("employee_id"),
+						rs.getString("email"),
+						rs.getString("username"),
+						rs.getString("password")
+						));
+
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+
+		return employee;
+	}
+
+
+	
+
+
+	
 
 }

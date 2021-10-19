@@ -41,7 +41,7 @@ public class RequestDao {
 						rs.getString("description"),
 						rs.getString("request_status"),
 						rs.getString("request_date"),
-						rs.getInt("employee_id")
+						rs.getInt("fk_employee_id")
 						));
 				
 			}
