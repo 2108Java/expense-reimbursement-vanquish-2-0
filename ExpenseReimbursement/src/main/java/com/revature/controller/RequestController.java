@@ -35,13 +35,13 @@ public class RequestController {
 		// this id should match the one in the handler
 
 		//this grabs the id that the user typed in the form and parses it to int
-		int idInput = Integer.parseInt(ctx.formParam("requestId"));
+		int requestdInput = Integer.parseInt(ctx.formParam("requestId"));
 
 		ctx.res.setStatus(200);
 
 
 		//then invokes a service method that grabs a request object when given its id
-		return requestService.getRequestById(idInput);
+		return requestService.getRequestById(requestdInput);
 
 	}
 
