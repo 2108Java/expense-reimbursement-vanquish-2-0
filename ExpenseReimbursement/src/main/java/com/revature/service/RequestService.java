@@ -40,9 +40,34 @@ public class RequestService {
 		return requestDao.selectEmployeePendingRequests(employeeId);
 	}
 
-	public List<Request> getRequestListByUsername(String username) {
+	public List<Request> getRequestListByEmployeeUsername(String username) {
 		
-		return requestDao.selectRequestsByUsername(username);
+		return requestDao.selectRequestsByEmployeeUsername(username);
 	}
+	
+	
+	
+	public boolean acceptRequest(int requestId) {
+		boolean success = false;
+		
+		requestDao.updateRequestToApproved(requestId);
+		
+		success = true;
+		
+		return success;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

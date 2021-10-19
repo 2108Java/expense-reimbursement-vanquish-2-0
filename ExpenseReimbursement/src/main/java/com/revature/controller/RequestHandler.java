@@ -37,7 +37,10 @@ public class RequestHandler {
 		app.get("/request/{requestIdInput}", ctx -> ctx.json(requestController.getRequestById(ctx)));
 		
 		//the manager can view a specific request by username in the database:
-		app.get("/requestsByUsername/{username}", ctx -> ctx.json(requestController.getRequestByUsername(ctx)));
+		app.get("/requestsByUsername/{username}", ctx -> ctx.json(requestController.getRequestsByEmployeeUsername(ctx)));
+		
+		//manager can approve a request
+		app.get("approveRequest/{requestIdInput}", ctx -> ctx.json(requestController.approveRequest(ctx)));
 		
  
 	}

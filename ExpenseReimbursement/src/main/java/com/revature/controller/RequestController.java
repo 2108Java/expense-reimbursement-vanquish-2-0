@@ -71,24 +71,17 @@ public class RequestController {
 	
 	
 	//update method
-	public void processRequest(int requestId, String decision) {
+	public boolean approveRequest(Context ctx) {
 		
-		//by update, we mean a manager updates the status of the request to approved or denied.
-		//design question: instead of having a requestController, shouldn't it be a managerController,
-		//and employeeController? This way methods invoked will restricted to what employee is allowed to do and 
-		//separating it from what a manager can do
-		//steps to achieve this:
-			//1)create EmployeeController and ManagerController classes
-			//2)migrate methods from RequestController to either EmployeeController or ManagerController based on what
-			// the method does. For instance, processRequest(...) will go in ManagerController
-			//3)Delete RequestController class, it is no longer needed.
-		//NB: similarly, RequestService and RequestDao will be delegated between EmployeeService/ManagerService, 
-		//EmployeeDao/ManagerDao layers
-		//same thing goes for Manager
+		//by update, we mean a manager updates the status of the request to approved or denied
 		
-		RequestDao requestDao = new RequestDao();
+		int requestId = Integer.parseInt(ctx.formParam("requestIdInput"));
 		
-		requestDao.updateRequest(requestId, decision);
+		requestService.acceptRequest(requestId);
+		
+		
+		ctx.res.setStatus(200);
+		return true;
 		
 	}
 	
@@ -122,11 +115,11 @@ public class RequestController {
 	}
 
 
-	public List<Request> getRequestByUsername(Context ctx) {
+	public List<Request> getRequestsByEmployeeUsername(Context ctx) {
 		
 		String usernameInput = ctx.formParam("username");
 		
-		return requestService.getRequestListByUsername(usernameInput);
+		return requestService.getRequestListByEmployeeUsername(usernameInput);
 	}
 	
 	

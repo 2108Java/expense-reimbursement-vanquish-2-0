@@ -139,7 +139,7 @@ public class RequestDao {
 	}
 	
 	
-	public boolean updateRequest(int requestId, String decision) {
+	public boolean updateRequestToApproved(int requestId) {
 		
 		boolean success = false;
 		
@@ -147,12 +147,11 @@ public class RequestDao {
 		
 		try(Connection connection = DriverManager.getConnection(url,username,password)){
 
-			String sql = "UPDATE table requests SET request_status = ? WHERE request_id = ?";
+			String sql = "UPDATE table requests SET request_status = 'approved' WHERE request_id = ?";
 
 			PreparedStatement ps = connection.prepareStatement(sql);
 			
-			ps.setString(1, decision);
-			ps.setInt(2, requestId);
+			ps.setInt(1, requestId);
 
 			ps.execute();
 
@@ -242,8 +241,8 @@ public class RequestDao {
 	}
 
 
-	public List<Request> selectRequestsByUsername(String username) {
-		List<Request> requestListByUsername = new ArrayList<>();
+	public List<Request> selectRequestsByEmployeeUsername(String username) {
+		List<Request> requestListByEmployeeUsername = new ArrayList<>();
 		
 
 		String sql = "SELECT * FROM requests WHERE fk_employee_id = (SELECT employee_id FROM employees WHERE username = ?)";
@@ -258,7 +257,7 @@ public class RequestDao {
 			
 			while(rs.next()) {
 				
-				requestListByUsername.add(new Request(
+				requestListByEmployeeUsername.add(new Request(
 						
 						rs.getInt("request_id"),
 						rs.getString("request_type"),
@@ -275,7 +274,7 @@ public class RequestDao {
 			e.printStackTrace();
 		}
 		
-		return requestListByUsername;
+		return requestListByEmployeeUsername;
 	}
 
 }
