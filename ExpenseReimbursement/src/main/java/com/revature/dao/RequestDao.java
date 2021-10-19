@@ -241,4 +241,41 @@ public class RequestDao {
 		return employeePendingRequests;
 	}
 
+
+	public List<Request> selectRequestsByUsername(String username) {
+		List<Request> requestListByUsername = new ArrayList<>();
+		
+
+		String sql = "SELECT * FROM requests WHERE fk_employee_id = (SELECT employee_id FROM employees WHERE username = ?)";
+		
+		try {
+			Connection connection = DriverManager.getConnection(url, username, password);
+			 
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, username);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				requestListByUsername.add(new Request(
+						
+						rs.getInt("request_id"),
+						rs.getString("request_type"),
+						rs.getDouble("amount"),
+						rs.getString("description"),
+						rs.getString("request_status"),
+						rs.getString("request_date"),
+						rs.getInt("fk_employee_id")
+						));
+			}
+			
+		}catch(SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return requestListByUsername;
+	}
+
 }

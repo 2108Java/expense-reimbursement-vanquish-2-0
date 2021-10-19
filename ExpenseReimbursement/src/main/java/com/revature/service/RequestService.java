@@ -40,4 +40,9 @@ public class RequestService {
 		return requestDao.selectEmployeePendingRequests(employeeId);
 	}
 
+	public List<Request> getRequestListByUsername(String username) {
+		
+		return requestDao.selectRequestsByUsername(username);
+	}
+
 }

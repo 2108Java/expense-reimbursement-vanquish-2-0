@@ -120,6 +120,14 @@ public class RequestController {
 		ctx.res.setStatus(200);
 		return requestService.getEmployeePendingRequests(employeeIdInput) ;
 	}
+
+
+	public List<Request> getRequestByUsername(Context ctx) {
+		
+		String usernameInput = ctx.formParam("username");
+		
+		return requestService.getRequestListByUsername(usernameInput);
+	}
 	
 	
 	
