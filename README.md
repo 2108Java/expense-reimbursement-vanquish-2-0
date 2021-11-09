@@ -22,7 +22,7 @@ To-do list:
 
 Add alert system when redirecting
 Add ability to upload a file with reimbursement request
-Getting Started
+# Getting Started
 git clone git@github.com:2108Java/expense-reimbursement-vanquish-2-0.git
 
 # Usage
